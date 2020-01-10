@@ -93,4 +93,8 @@ public class LoginActivity extends AppCompatActivity {
     public void link_signup(View view) {
         startActivity(new Intent(this, RegisterActivity.class));
     }
+
+    public void link_forgot_password(View view) {
+        startActivity(new Intent(this, ForgotPassword.class));
+    }
 }
