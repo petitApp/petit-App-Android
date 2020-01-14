@@ -14,7 +14,8 @@
         tools:context=".RegisterActivity"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="2dp">
+        tools:layout_editor_absoluteY="2dp"
+        android:background="@drawable/loginscreen">
 
         <!-- Email Label -->
         <TextView
