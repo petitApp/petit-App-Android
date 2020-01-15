@@ -85,61 +85,12 @@
             android:padding="10dp"
             android:paddingLeft="10dp"/>
 
-        <TextView
-            android:textSize="17dp"
-            android:textColor="@color/colorBlack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Name" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_birthday"/>
 
-        <EditText
 
-            android:id="@+id/input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:background="@drawable/custom_buttom_formulary"
-            android:padding="10dp"
-            android:paddingLeft="10dp"/>
-
-        <TextView
-            android:textSize="17dp"
-            android:textColor="@color/colorBlack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Phone number" />
-
-        <EditText
-
-            android:id="@+id/input_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone number"
-            android:background="@drawable/custom_buttom_formulary"
-            android:padding="10dp"
-            android:paddingLeft="10dp"/>
-
-        <TextView
-            android:textSize="17dp"
-            android:textColor="@color/colorBlack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Address" />
-
-        <EditText
-            android:id="@+id/input_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address"
-            android:background="@drawable/custom_buttom_formulary"
-            android:padding="10dp"
-            android:paddingLeft="10dp"/>
 
         <Button
             android:textSize="17dp"

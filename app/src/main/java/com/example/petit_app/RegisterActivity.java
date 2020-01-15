@@ -1,25 +1,36 @@
 package com.example.petit_app;
 
 import android.app.AppComponentFactory;
+import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 
 @RequiresApi(api = Build.VERSION_CODES.P)
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText input_email, input_password, input_username, input_name, input_address, input_phone_number;
-    Button btn_register;
-
+    EditText input_email, input_password, input_username ;
+    Button btn_register, btn_birthday;
+    Date calendar;
+    Fragment fragment;
+    private int mYear, mMonth, mDay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +39,17 @@ public class RegisterActivity extends AppCompatActivity {
         input_email = findViewById(R.id.input_email);
         input_password = findViewById(R.id.input_password);
         input_username = findViewById(R.id.input_username);
-        input_name = findViewById(R.id.input_name);
-        input_address = findViewById(R.id.input_address);
-        input_phone_number = findViewById(R.id.input_phone_number);
+        btn_birthday = findViewById(R.id.btn_birthday);
         btn_register = findViewById(R.id.btn_register);
+
+        btn_birthday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new CalendarFragment();
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+
+        });
     }
 
 
@@ -45,26 +63,38 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
                 String username = input_username.getText().toString();
-                String name = input_name.getText().toString();
-                String address = input_address.getText().toString();
-                String phone_number = input_phone_number.getText().toString();
 
-                checkInputs(email, pass, username, name, address, phone_number);
+                checkInputs(email, pass, username);
             }
         });
+
+
+
+
     }
 
     //Method to check inputs of the login view
-    private void checkInputs(String email, String pass, String username, String name, String address, String phone_number) {
+    private void checkInputs(String email, String pass, String username) {
 
         //Check if inputs are empty
-        if (email.isEmpty() || pass.isEmpty() || username.isEmpty() || name.isEmpty() || address.isEmpty()) {
-            (Toast.makeText(getApplicationContext(), "Empty inputs are not allowed", Toast.LENGTH_LONG)).show();
-        } else {
+        if (email.isEmpty())  {
+            input_email.setError("Empty inputs are not allowed");
+        }
+        if(pass.isEmpty()){
+            input_password.setError("Empty inputs are not allowed");
+        }
 
-            if (checkEmail(email) == true && checkPass(pass) == true && checkPhoneNumber(phone_number)) {
+        if(username.isEmpty()){
+            input_username.setError("Empty inputs are not allowed");
+        }
+        else {
+            checkEmail(email);
+            checkCalendar(calendar);
+            checkPass(pass);
+            if (checkEmail(email) == true && checkCalendar(calendar) == true && checkPass(pass) == true) {
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
             }
+
         }
 
     }
@@ -72,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean checkEmail(String email) {
         //Check email comparing to the email that arrived through parameters
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            input_email.setError("Introduce a correct email");
             (Toast.makeText(getApplicationContext(), "Introduce a correct email", Toast.LENGTH_LONG)).show();
             return false;
         }
@@ -80,14 +111,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkPass(String pass) {
         if (pass.length() <= 8) {
+            input_password.setError("The password must be greater than 8 digits");
             (Toast.makeText(getApplicationContext(), "The password must be greater than 8 digits", Toast.LENGTH_LONG)).show();
             return false;
         }
         if (!pass.matches("(?=.*[0-9]).*")) {
+            input_password.setError("The password must contains at least one number");
             (Toast.makeText(getApplicationContext(), "The password must contains at least one number", Toast.LENGTH_LONG)).show();
             return false;
         }
         if (!pass.matches("(?=.*[A-Z]).*")) {
+            input_password.setError("The password must contains one upper case letter");
             (Toast.makeText(getApplicationContext(), "The password must contains one upper case letter", Toast.LENGTH_LONG)).show();
             return false;
         }
@@ -95,14 +129,27 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkPhoneNumber(String phoneNumber) {
-        int number = Integer.parseInt(phoneNumber);
+    private boolean checkCalendar(Date calendar) {
 
-        if (number >= 9) {
-            (Toast.makeText(getApplicationContext(), "The Phone Number must be greater than 9 digits", Toast.LENGTH_LONG)).show();
+
+        if (calendar == null) {
+            (Toast.makeText(getApplicationContext(), "You have to fill the birthday", Toast.LENGTH_LONG)).show();
             return false;
         }
         return true;
     }
+
+    //Calendar function
+    //Enviar los datos del calendario al activity
+    public void sendDatePicker(Date datePicker){
+
+        calendar = datePicker;
+
+        Log.d("Valor del calendario", String.valueOf(calendar));
+     //   recievedDataCalendar(calendar, (CalendarFragment)fragment);
+    }
+
+
+
 
 }
