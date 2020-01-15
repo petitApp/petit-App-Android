@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         if (email.isEmpty() || pass.isEmpty()) {
             (Toast.makeText(getApplicationContext(), "Empty inputs are not allowed", Toast.LENGTH_LONG)).show();
         } else {
+            checkEmail(email);
+            checkPass(pass);
             if (checkEmail(email) == true && checkPass(pass) == true) {
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
             }
@@ -64,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkEmail(String email) {
         //Check email comparing to the email that arrived through parameters
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            (Toast.makeText(getApplicationContext(), "Introduce a correct email", Toast.LENGTH_LONG)).show();
+            input_email.setError("Introduce a correct email");
             return false;
 
         }
@@ -74,15 +76,18 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkPass(String pass) {
 
         if (pass.length() <= 8) {
-            (Toast.makeText(getApplicationContext(), "The password must be greater than 8 digits", Toast.LENGTH_LONG)).show();
+            input_password.setError("The password must be greater than 8 digits");
+
             return false;
         }
         if (!pass.matches("(?=.*[0-9]).*")) {
-            (Toast.makeText(getApplicationContext(), "The password must contains at least one number", Toast.LENGTH_LONG)).show();
+            input_password.setError("The password must contains at least one number");
+
             return false;
         }
         if (!pass.matches("(?=.*[A-Z]).*")) {
-            (Toast.makeText(getApplicationContext(), "The password must contains one upper case letter", Toast.LENGTH_LONG)).show();
+            input_password.setError("The password must contains one upper case letter");
+
             return false;
         }
 
