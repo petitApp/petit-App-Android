@@ -7,4 +7,5 @@
     <color name="colorBrownButton">#EFD494</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhiteTransparent">#80FFFFFF</color>
+    <color name="colorButton">#3ECEC1</color>
 </resources>

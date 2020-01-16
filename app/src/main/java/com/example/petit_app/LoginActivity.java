@@ -53,45 +53,15 @@ public class LoginActivity extends AppCompatActivity {
 
         //Check if inputs are empty
         if (email.isEmpty() || pass.isEmpty()) {
-            (Toast.makeText(getApplicationContext(), "Empty inputs are not allowed", Toast.LENGTH_LONG)).show();
-        } else {
-            checkEmail(email);
-            checkPass(pass);
-            if (checkEmail(email) == true && checkPass(pass) == true) {
+            input_email.setError("Empty inputs are not allowed");
+
+        }
+        if( pass.isEmpty()){
+            input_password.setError("Empty inputs are not allowed");
+        }
+        else {
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
-            }
         }
-    }
-
-    private boolean checkEmail(String email) {
-        //Check email comparing to the email that arrived through parameters
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            input_email.setError("Introduce a correct email");
-            return false;
-
-        }
-        return true;
-    }
-
-    private boolean checkPass(String pass) {
-
-        if (pass.length() <= 8) {
-            input_password.setError("The password must be greater than 8 digits");
-
-            return false;
-        }
-        if (!pass.matches("(?=.*[0-9]).*")) {
-            input_password.setError("The password must contains at least one number");
-
-            return false;
-        }
-        if (!pass.matches("(?=.*[A-Z]).*")) {
-            input_password.setError("The password must contains one upper case letter");
-
-            return false;
-        }
-
-        return true;
     }
 
     //Click from login to register view

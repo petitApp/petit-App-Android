@@ -2,6 +2,7 @@ package com.example.petit_app;
 
 import android.app.AppComponentFactory;
 import android.app.DatePickerDialog;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText input_email, input_password, input_username ;
+    EditText input_email, input_password, input_username, input_confirm_password ;
     Button btn_register, btn_birthday;
     Date calendar;
     Fragment fragment;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         input_username = findViewById(R.id.input_username);
         btn_birthday = findViewById(R.id.btn_birthday);
         btn_register = findViewById(R.id.btn_register);
+        input_confirm_password = findViewById(R.id.input_confirm_password);
 
         btn_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +65,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
                 String username = input_username.getText().toString();
+                String confirmPass = input_confirm_password.getText().toString();
 
-                checkInputs(email, pass, username);
+                checkInputsRegister(email, pass, username, confirmPass);
             }
         });
 
@@ -74,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     //Method to check inputs of the login view
-    private void checkInputs(String email, String pass, String username) {
+    private void checkInputsRegister(String email, String pass, String username, String confirmPass) {
 
         //Check if inputs are empty
         if (email.isEmpty())  {
@@ -92,11 +95,11 @@ public class RegisterActivity extends AppCompatActivity {
             checkCalendar(calendar);
             checkPass(pass);
             if (checkEmail(email) == true && checkCalendar(calendar) == true && checkPass(pass) == true) {
-                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                if(confirmPassword(pass, confirmPass)){
+                    (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                }
             }
-
         }
-
     }
 
     private boolean checkEmail(String email) {
@@ -134,6 +137,20 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (calendar == null) {
             (Toast.makeText(getApplicationContext(), "You have to fill the birthday", Toast.LENGTH_LONG)).show();
+            return false;
+        }
+        Log.d("fecha actual", String.valueOf(calendar));
+
+        return true;
+    }
+
+
+    private boolean confirmPassword(String password , String confirmPassword){
+
+        if(!password.equals(confirmPassword) ){
+            input_confirm_password.setError("Introduce the same password");
+            Log.d("tusmuertos", password);
+            Log.d("tusmuertos2", confirmPassword);
             return false;
         }
         return true;
