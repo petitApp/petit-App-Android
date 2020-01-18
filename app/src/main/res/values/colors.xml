@@ -8,4 +8,5 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorWhiteTransparent">#80FFFFFF</color>
     <color name="colorButton">#3ECEC1</color>
+    <color name="colorGrey">#7E7976</color>
 </resources>

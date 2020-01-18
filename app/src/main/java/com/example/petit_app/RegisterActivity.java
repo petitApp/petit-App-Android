@@ -9,6 +9,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,84 +30,114 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText input_email, input_password, input_username, input_confirm_password ;
     Button btn_register, btn_birthday;
+    CheckBox checkAge;
     Date calendar;
-    Fragment fragment;
-    private int mYear, mMonth, mDay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        checkAge = findViewById(R.id.checkAge);
         input_email = findViewById(R.id.input_email);
         input_password = findViewById(R.id.input_password);
         input_username = findViewById(R.id.input_username);
-        btn_birthday = findViewById(R.id.btn_birthday);
         btn_register = findViewById(R.id.btn_register);
         input_confirm_password = findViewById(R.id.input_confirm_password);
 
-        btn_birthday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment newFragment = new CalendarFragment();
-                newFragment.show(getSupportFragmentManager(), "datePicker");
-            }
 
-        });
-    }
-
-
-    protected void onResume() {
-        super.onResume();
 
         //Click Listener del botón del login
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
                 String username = input_username.getText().toString();
                 String confirmPass = input_confirm_password.getText().toString();
 
-                checkInputsRegister(email, pass, username, confirmPass);
+                checkInputsRegister(username, email, pass,  confirmPass);
+
+
             }
         });
-
-
-
-
     }
 
     //Method to check inputs of the login view
-    private void checkInputsRegister(String email, String pass, String username, String confirmPass) {
+    private void checkInputsRegister(String username, String email, String pass, String confirmPass) {
 
         //Check if inputs are empty
-        if (email.isEmpty())  {
-            input_email.setError("Empty inputs are not allowed");
-        }
-        if(pass.isEmpty()){
-            input_password.setError("Empty inputs are not allowed");
-        }
-
         if(username.isEmpty()){
+            Log.d("valor del email", "ëdededede");
             input_username.setError("Empty inputs are not allowed");
-        }
-        else {
-            checkEmail(email);
-            checkCalendar(calendar);
-            checkPass(pass);
-            if (checkEmail(email) == true && checkCalendar(calendar) == true && checkPass(pass) == true) {
-                if(confirmPassword(pass, confirmPass)){
-                    (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
-                }
+        }else{
+            Log.d("valor del email", "no está vacio");
+            checkUsername(username);
+            if (checkEmail(email)==true
+                    && checkPass(pass)==true
+                    && confirmPassword(pass, confirmPass)==true
+                    && validateCheckAge(checkAge)==true
+                    &&checkUsername(username)==true) {
+
+                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+
             }
         }
+
+        if (email.isEmpty()){
+            input_email.setError("Empty inputs are not allowed");
+        }else{
+            checkEmail(email);
+            if (checkEmail(email)==true
+                    && checkPass(pass)==true
+                    && confirmPassword(pass, confirmPass)==true
+                    && validateCheckAge(checkAge)==true
+                    &&checkUsername(username)==true) {
+
+                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+
+            }
+        }
+
+        if(pass.isEmpty()){
+            confirmPassword(pass, confirmPass);
+            input_password.setError("Empty inputs are not allowed");
+        }else{
+            checkPass(pass);
+            if (checkEmail(email)==true
+                    && checkPass(pass)==true
+                    && confirmPassword(pass, confirmPass)==true
+                    && validateCheckAge(checkAge)==true
+                    &&checkUsername(username)==true) {
+
+                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+
+            }
+        }
+
+        if(!validateCheckAge(checkAge)){
+            input_confirm_password.setError("You must be older than 18 years old.");
+            (Toast.makeText(getApplicationContext(), "You must be older than 18 years old.", Toast.LENGTH_LONG)).show();
+        }
+        /*
+*/
+
+
     }
 
     private boolean checkEmail(String email) {
         //Check email comparing to the email that arrived through parameters
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             input_email.setError("Introduce a correct email");
-            (Toast.makeText(getApplicationContext(), "Introduce a correct email", Toast.LENGTH_LONG)).show();
+            return false;
+        }
+        return true;
+    }
+    private boolean checkUsername(String userName){
+        if (userName.length() <= 3) {
+            input_username.setError("The user name must be greater than 3 characters");
             return false;
         }
         return true;
@@ -114,32 +145,17 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkPass(String pass) {
         if (pass.length() <= 8) {
-            input_password.setError("The password must be greater than 8 digits");
-            (Toast.makeText(getApplicationContext(), "The password must be greater than 8 digits", Toast.LENGTH_LONG)).show();
+            input_password.setError("The password must be greater than 8 characters");
             return false;
         }
         if (!pass.matches("(?=.*[0-9]).*")) {
             input_password.setError("The password must contains at least one number");
-            (Toast.makeText(getApplicationContext(), "The password must contains at least one number", Toast.LENGTH_LONG)).show();
             return false;
         }
         if (!pass.matches("(?=.*[A-Z]).*")) {
             input_password.setError("The password must contains one upper case letter");
-            (Toast.makeText(getApplicationContext(), "The password must contains one upper case letter", Toast.LENGTH_LONG)).show();
             return false;
         }
-
-        return true;
-    }
-
-    private boolean checkCalendar(Date calendar) {
-
-
-        if (calendar == null) {
-            (Toast.makeText(getApplicationContext(), "You have to fill the birthday", Toast.LENGTH_LONG)).show();
-            return false;
-        }
-        Log.d("fecha actual", String.valueOf(calendar));
 
         return true;
     }
@@ -147,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean confirmPassword(String password , String confirmPassword){
 
-        if(!password.equals(confirmPassword) ){
+        if(!password.equals(confirmPassword) || password.isEmpty() ){
             input_confirm_password.setError("Introduce the same password");
             Log.d("tusmuertos", password);
             Log.d("tusmuertos2", confirmPassword);
@@ -156,14 +172,13 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    //Calendar function
-    //Enviar los datos del calendario al activity
-    public void sendDatePicker(Date datePicker){
-
-        calendar = datePicker;
-
-        Log.d("Valor del calendario", String.valueOf(calendar));
-     //   recievedDataCalendar(calendar, (CalendarFragment)fragment);
+    private boolean validateCheckAge(CheckBox age){
+        if(!age.isChecked()){
+            checkAge.setError("You must be older than 18 years old.");
+            (Toast.makeText(getApplicationContext(), "You must be older than 18 years old.", Toast.LENGTH_LONG)).show();
+            return false;
+        }
+        return true;
     }
 
 

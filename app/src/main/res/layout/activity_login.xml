@@ -22,6 +22,7 @@
 
 
         <ImageView
+
             android:layout_width="wrap_content"
             android:layout_height="190dp"
             android:layout_gravity="center_horizontal"
@@ -45,7 +46,7 @@
             android:padding="10dp"
             android:paddingLeft="10dp"
             android:layout_marginBottom="20dp"
-            android:textColorHint="@color/colorBlack"
+            android:textColorHint="@color/colorGrey"
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,7 +57,7 @@
         <EditText
             android:padding="10dp"
             android:paddingLeft="10dp"
-            android:text="@color/colorBlack"
+            android:text="@color/colorGrey"
             android:background="@drawable/custom_buttom_formulary"
             android:id="@+id/input_password"
             android:layout_width="match_parent"

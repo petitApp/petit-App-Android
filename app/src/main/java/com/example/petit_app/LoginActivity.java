@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkInputs(String email, String pass) {
 
         //Check if inputs are empty
-        if (email.isEmpty() || pass.isEmpty()) {
+        if (email.isEmpty()) {
             input_email.setError("Empty inputs are not allowed");
 
         }
