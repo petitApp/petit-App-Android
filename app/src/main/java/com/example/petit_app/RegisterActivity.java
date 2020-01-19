@@ -2,6 +2,7 @@ package com.example.petit_app;
 
 import android.app.AppComponentFactory;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 @RequiresApi(api = Build.VERSION_CODES.P)
@@ -32,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_register, btn_birthday;
     CheckBox checkAge;
     Date calendar;
+    private APIService APIService;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,30 +51,44 @@ public class RegisterActivity extends AppCompatActivity {
         input_username = findViewById(R.id.input_username);
         btn_register = findViewById(R.id.btn_register);
         input_confirm_password = findViewById(R.id.input_confirm_password);
+        
 
 
+
+
+
+        APIService = ApiUtils.getAPIService();
 
         //Click Listener del botón del login
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                 String email = input_email.getText().toString();
+                 String pass = input_password.getText().toString();
+                 String username = input_username.getText().toString();
+                 String confirmPass = input_confirm_password.getText().toString();
 
 
-                String email = input_email.getText().toString();
-                String pass = input_password.getText().toString();
-                String username = input_username.getText().toString();
-                String confirmPass = input_confirm_password.getText().toString();
 
-                checkInputsRegister(username, email, pass,  confirmPass);
+                String pattern = "yyyy-MM-dd";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
+                Date date = null;
+                try {
+                    date = simpleDateFormat.parse("2018-09-09");
+                    checkInputsRegister(username, email, pass,  confirmPass, date);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
             }
         });
     }
 
     //Method to check inputs of the login view
-    private void checkInputsRegister(String username, String email, String pass, String confirmPass) {
+    private void checkInputsRegister(String username, String email, String pass, String confirmPass, Date date) {
 
         //Check if inputs are empty
         if(username.isEmpty()){
@@ -81,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
+                registerPOST(email, pass, username, date);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -96,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
+                registerPOST(email, pass, username, date);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -112,14 +136,26 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
+                registerPOST(email, pass, username, date);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
         }
 
         if(!validateCheckAge(checkAge)){
-            input_confirm_password.setError("You must be older than 18 years old.");
             (Toast.makeText(getApplicationContext(), "You must be older than 18 years old.", Toast.LENGTH_LONG)).show();
+        }else{
+            validateCheckAge(checkAge);
+            if (checkEmail(email)==true
+                    && checkPass(pass)==true
+                    && confirmPassword(pass, confirmPass)==true
+                    && validateCheckAge(checkAge)==true
+                    &&checkUsername(username)==true) {
+
+                registerPOST(email, pass, username, date);
+                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+
+            }
         }
         /*
 */
@@ -174,14 +210,33 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validateCheckAge(CheckBox age){
         if(!age.isChecked()){
-            checkAge.setError("You must be older than 18 years old.");
             (Toast.makeText(getApplicationContext(), "You must be older than 18 years old.", Toast.LENGTH_LONG)).show();
             return false;
         }
         return true;
     }
 
+    private void registerPOST(String email, String password,String user_name, Date birthdate)
+    {
+        APIService.createUser(email, password, user_name , birthdate).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()) {
 
+                    Log.d("RESPUESTA DEL MENSAJE", response.toString());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
 
 
 }
