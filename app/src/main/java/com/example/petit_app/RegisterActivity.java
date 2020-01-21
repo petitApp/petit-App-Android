@@ -35,9 +35,9 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText input_email, input_password, input_username, input_confirm_password ;
-    Button btn_register, btn_birthday;
+    Button btn_register;
     CheckBox checkAge;
-    Date calendar;
+
     private APIService APIService;
     Context context;
 
@@ -51,11 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
         input_username = findViewById(R.id.input_username);
         btn_register = findViewById(R.id.btn_register);
         input_confirm_password = findViewById(R.id.input_confirm_password);
-        
-
-
-
-
 
         APIService = ApiUtils.getAPIService();
 
@@ -70,25 +65,14 @@ public class RegisterActivity extends AppCompatActivity {
                  String confirmPass = input_confirm_password.getText().toString();
 
 
-
-                String pattern = "yyyy-MM-dd";
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-                Date date = null;
-                try {
-                    date = simpleDateFormat.parse("2018-09-09");
-                    checkInputsRegister(username, email, pass,  confirmPass, date);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                checkInputsRegister(username, email, pass,  confirmPass, checkAge);
 
             }
         });
     }
 
     //Method to check inputs of the login view
-    private void checkInputsRegister(String username, String email, String pass, String confirmPass, Date date) {
+    private void checkInputsRegister(String username, String email, String pass, String confirmPass, CheckBox age) {
 
         //Check if inputs are empty
         if(username.isEmpty()){
@@ -103,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username, date);
+                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -119,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username, date);
+                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -136,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username, date);
+                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -152,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username, date);
+                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -216,9 +200,9 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private void registerPOST(String email, String password,String user_name, Date birthdate)
+    private void registerPOST(String email, String password, String user_name)
     {
-        APIService.createUser(email, password, user_name , birthdate).enqueue(new Callback<User>() {
+        APIService.createUser(email, password, user_name).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
@@ -231,7 +215,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
-
+                Log.d("RESPUESTA DEL MENSAJE", call.toString());
             }
         });
 

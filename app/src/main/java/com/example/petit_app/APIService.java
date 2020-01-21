@@ -1,5 +1,7 @@
 package com.example.petit_app;
 
+import android.widget.CheckBox;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,5 +16,5 @@ public interface APIService {
 
     @POST("/user")
     @FormUrlEncoded
-    Call<User> createUser(@Field("email") String email, @Field("password") String password, @Field("user_name") String user_name, @Field("birthday") Date birthday);
+    Call<User> createUser(@Field("email") String email, @Field("password") String password, @Field("user_name") String user_name);
 }
