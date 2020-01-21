@@ -1,7 +1,11 @@
 package com.example.petit_app;
 
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class RetrofitClient {
 
@@ -11,11 +15,19 @@ public class RetrofitClient {
     public static Retrofit getClient(String baseUrl) {
 
         if (retrofit==null) {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.level(HttpLoggingInterceptor.Level.BODY);
+            interceptor.getLevel();
+            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
+
 }

@@ -54,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         APIService = ApiUtils.getAPIService();
 
+
+
         //Click Listener del botón del login
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +217,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
-                Log.d("RESPUESTA DEL MENSAJE", call.toString());
+
             }
         });
 
