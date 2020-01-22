@@ -89,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -105,7 +104,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -122,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -138,13 +135,12 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
+
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
         }
-        /*
-*/
+        registerPOST(pass, email, username);
 
 
     }
@@ -202,11 +198,11 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private void registerPOST(String email, String password, String user_name)
+    private void registerPOST(String password, String email, String user_name)
     {
         Log.d("eeer","addede");
         Log.d("OBJETO:", email);
-        User user1 = new User(email, password, user_name);
+        User user1 = new User(password, email, user_name);
         APIService.createUser(user1).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
