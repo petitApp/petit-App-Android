@@ -205,7 +205,9 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerPOST(String email, String password, String user_name)
     {
         Log.d("eeer","addede");
-        APIService.createUser(email, password, user_name).enqueue(new Callback<User>() {
+        Log.d("OBJETO:", email);
+        User user1 = new User(email, password, user_name);
+        APIService.createUser(user1).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
