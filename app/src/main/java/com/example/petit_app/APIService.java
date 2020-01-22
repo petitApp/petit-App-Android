@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 public interface APIService {
 
     @Headers("Content-Type: application/json")
-    @POST("user")
+    @POST("api/user")
     @FormUrlEncoded
     Call<User> createUser(@Field("email") String email, @Field("password") String password, @Field("user_name") String user_name);
 }
