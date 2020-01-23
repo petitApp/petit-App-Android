@@ -9,8 +9,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorWhiteBlue">
+            android:layout_height="400dp"
+            android:background="@color/colorWhiteBlue"
+            >
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
+                android:src="@drawable/dog_profile"
+                app:civ_border_width="4dp"
+                app:civ_border_color="@color/colorButton"
+                android:layout_marginLeft="62dp"
+                android:layout_marginRight="62dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="18dp"
+                />
         </LinearLayout>
 
     <LinearLayout
@@ -50,7 +66,7 @@
                         android:layout_marginLeft="35dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:background="@color/colorBlack">
+                        android:background="@drawable/icon_location">
 
                     </ImageView>
                     <TextView
@@ -76,7 +92,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@color/colorBlack">
+                        android:background="@drawable/like_grey">
 
                     </ImageView>
 
@@ -189,12 +205,18 @@
                 android:layout_marginLeft="29dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@color/colorBlack">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/user_picture"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/dog_profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorButton">
 
-                </ImageView>
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+
                 <LinearLayout
                     android:layout_width="150dp"
                     android:layout_height="50dp"

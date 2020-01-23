@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "User not found o algo de eso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "User polla not found o algo de eso", Toast.LENGTH_SHORT).show();
 
             }
         });
