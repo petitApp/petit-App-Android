@@ -16,6 +16,6 @@ public interface APIService {
 
     @Headers("Content-Type: application/json")
     @POST("api/user")
-    @FormUrlEncoded
-    Call<User> createUser(@Field("email") String email, @Field("password") String password, @Field("user_name") String user_name);
+    Call<User> createUser(@Body User user);
+    Call<User> sendUser(@Body User user);
 }
