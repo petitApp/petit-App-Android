@@ -17,5 +17,6 @@ public interface APIService {
     @Headers("Content-Type: application/json")
     @POST("api/user")
     Call<User> createUser(@Body User user);
+    @POST("api/user/login")
     Call<User> sendUser(@Body User user);
 }
