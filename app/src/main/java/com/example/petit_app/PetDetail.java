@@ -41,9 +41,6 @@ public class PetDetail extends AppCompatActivity {
 
     private void getAnimalInfo()
     {
-
-
-        
         Call<String> call = APIService.getInfo();
         call.enqueue(new Callback<String>(){
             @Override

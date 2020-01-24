@@ -20,7 +20,7 @@ public interface APIService {
     Call<User> createUser(@Body User user);
     @POST("api/user/login")
     Call<User> sendUser(@Body User user);
-    @POST("api/animals")
+    @POST("api/user/password/reset")
     Call<User> recoverPass(@Body User user);
 
 
