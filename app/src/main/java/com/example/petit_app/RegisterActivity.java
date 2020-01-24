@@ -3,6 +3,7 @@ package com.example.petit_app;
 import android.app.AppComponentFactory;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
@@ -72,7 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
     //Method to check inputs of the login view
     private void checkInputsRegister(String username, String email, String pass, String confirmPass, CheckBox age) {
 
@@ -141,8 +141,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         registerPOST(pass, email, username);
-
-
     }
 
     private boolean checkEmail(String email) {
@@ -168,10 +166,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if (!pass.matches("(?=.*[0-9]).*")) {
             input_password.setError("The password must contains at least one number");
-            return false;
-        }
-        if (!pass.matches("(?=.*[A-Z]).*")) {
-            input_password.setError("The password must contains one upper case letter");
             return false;
         }
 

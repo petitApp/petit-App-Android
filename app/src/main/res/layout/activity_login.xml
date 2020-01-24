@@ -54,17 +54,15 @@
             />
 
         <EditText
+            android:background="@drawable/custom_buttom_formulary"
             android:padding="10dp"
             android:paddingLeft="10dp"
-            android:text="@color/colorGrey"
-            android:background="@drawable/custom_buttom_formulary"
+            android:textColorHint="@color/colorGrey"
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
-           />
-
+            />
         <TextView
             android:textColor="@color/colorButton"
             android:layout_width="fill_parent"

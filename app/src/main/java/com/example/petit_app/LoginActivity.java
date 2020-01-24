@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         input_password = findViewById(R.id.input_password);
         loginBtn = findViewById(R.id.btn_login);
         APIService = ApiUtils.getAPIService();
+
     }
 
     @Override
@@ -85,10 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             input_password.setError("The password must contains at least one number");
             return false;
         }
-        if (!pass.matches("(?=.*[A-Z]).*")) {
-            input_password.setError("The password must contains one upper case letter");
-            return false;
-        }
+
 
         return true;
     }
@@ -105,12 +103,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginPOST(String password, String email)
     {
-        User user2 = new User(password, email);
-        APIService.sendUser(user2).enqueue(new Callback<User>() {
+        User user = new User(password, email);
+        APIService.sendUser(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
-
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
 
                 }
