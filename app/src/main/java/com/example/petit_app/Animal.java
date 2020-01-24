@@ -16,6 +16,13 @@ public class Animal {
         this.id_breed = id_breed;
     }
 
+    public Animal (String name){
+        this.name=name;
+    }
+    public Animal (){
+
+    }
+
     public String getName() {
         return name;
     }
