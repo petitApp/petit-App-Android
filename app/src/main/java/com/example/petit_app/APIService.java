@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -19,4 +20,10 @@ public interface APIService {
     Call<User> createUser(@Body User user);
     @POST("api/user/login")
     Call<User> sendUser(@Body User user);
+    @POST("api/animals")
+    Call<User> recoverPass(@Body User user);
+
+
+    @GET("api/animals")
+    Call<String> getInfo();
 }
