@@ -160,11 +160,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkPass(String pass) {
-        if (pass.length() <= 8) {
+        if (pass.length() < 8) {
             input_password.setError("The password must be greater than 8 characters");
             return false;
         }
-        if (!pass.matches("(?=.*[0-9]).*")) {
+        if (!pass.matches("(?=.*[0-8]).*")) {
             input_password.setError("The password must contains at least one number");
             return false;
         }
