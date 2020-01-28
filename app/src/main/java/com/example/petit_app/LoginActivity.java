@@ -49,33 +49,13 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = input_password.getText().toString();
                 // checkInputs(email, pass);
 
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class );
+        startActivity(intent);
 
 
-                changeSecreen(R.id.nav_filter_adoption);
 
             }
         });
-    }
-
-    public void changeSecreen(int screen){
-        switch (screen) {
-            case R.id.nav_filter_adoption:
-                FragmentFilterAdoption fragmentFilterAdoption = new FragmentFilterAdoption();
-                addFragment(fragmentFilterAdoption);
-
-
-                break;
-
-        }
-    }
-
-    public void addFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(null)
-                .commit();
     }
 
 
