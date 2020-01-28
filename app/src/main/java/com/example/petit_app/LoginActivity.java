@@ -1,9 +1,11 @@
 package com.example.petit_app;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +16,14 @@ import java.util.regex.Pattern;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
 
     EditText input_email, input_password;
     Button loginBtn;
@@ -34,28 +39,46 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.btn_login);
         APIService = ApiUtils.getAPIService();
 
-    }
 
-    @Override
-    protected void onResume() {
-
-
-
-        
-        super.onResume();
-
-
+       
         //Click Listener del botón del login
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
-                checkInputs(email, pass);
+                // checkInputs(email, pass);
+
+
+
+                changeSecreen(R.id.nav_filter_adoption);
+
             }
         });
-
     }
+
+    public void changeSecreen(int screen){
+        switch (screen) {
+            case R.id.nav_filter_adoption:
+                FragmentFilterAdoption fragmentFilterAdoption = new FragmentFilterAdoption();
+                addFragment(fragmentFilterAdoption);
+
+
+                break;
+
+        }
+    }
+
+    public void addFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     //Method to check inputs of the login view
     private void checkInputs(String email, String pass) {

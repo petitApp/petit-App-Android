@@ -16,6 +16,12 @@ public class Animal {
         this.id_breed = id_breed;
     }
 
+    public Animal(String name, String location, String prefered_photo) {
+        this.name = name;
+        this.location = location;
+        this.prefered_photo = prefered_photo;
+    }
+
     public Animal (String name){
         this.name=name;
     }
