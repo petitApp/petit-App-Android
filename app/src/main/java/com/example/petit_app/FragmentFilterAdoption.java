@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +31,7 @@ public class FragmentFilterAdoption extends Fragment {
     TabItem ageFilter,distanceFilter, raceFilter;
     LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton;
     ArrayList<Animal> elementItemArray = new ArrayList<>();
-    MainActivity mainActivity  = (MainActivity) getActivity();
+
 
     @Nullable
     @Override
@@ -55,6 +57,11 @@ public class FragmentFilterAdoption extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                FragmentPetDetail fragmentPetDetail = new FragmentPetDetail();
+                ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
+
                 adapterImagesPets.notifyDataSetChanged();
             }
         });

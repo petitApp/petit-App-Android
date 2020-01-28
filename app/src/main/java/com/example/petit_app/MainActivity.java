@@ -57,10 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_filter_adoption:
                 FragmentFilterAdoption fragmentFilterAdoption = new FragmentFilterAdoption();
                 addFragment(fragmentFilterAdoption);
-
-
                 break;
-
         }
     }
 
