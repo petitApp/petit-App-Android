@@ -137,16 +137,17 @@
         android:layout_height="500dp"
         android:layout_marginTop="300dp">
         <GridView
+            android:layout_margin="60dp"
             android:background="@color/colorWhite"
             android:id="@+id/gridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:numColumns="2"
-            android:horizontalSpacing="1dp"
-            android:verticalSpacing="4dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
             android:gravity="center"
             android:layout_gravity="center"
-
+            android:columnWidth="10dp"
             ></GridView>
     </LinearLayout>
 

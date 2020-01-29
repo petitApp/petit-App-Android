@@ -6,253 +6,269 @@
     android:layout_height="match_parent"
     tools:context=".FragmentPetDetail">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:background="@color/colorWhiteBlue">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
-                android:layout_width="280dp"
-                android:layout_height="280dp"
-                android:src="@drawable/dog_profile"
-                app:civ_border_width="4dp"
-                app:civ_border_color="@color/colorButton"
-                android:layout_marginLeft="62dp"
-                android:layout_marginRight="62dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="18dp"
-                />
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="350dp"
-        android:background="@drawable/detail_card"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@color/colorWhiteBlue">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/profile_image"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/dog_profile"
+                    app:civ_border_width="4dp"
+                    app:civ_border_color="@color/colorButton"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginRight="62dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="18dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+            android:background="@drawable/detail_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/namePet"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Maine Coon Cat"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="35dp"
-                    android:textColor="@color/colorGrey">
-                </TextView>
+            android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
-                    <ImageView
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="35dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/icon_location">
-
-                    </ImageView>
-                    <TextView
-                        android:id="@+id/location"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="10dp"
-                        android:textStyle="bold"
-                        android:layout_width="140dp"
-                        android:layout_height="match_parent"
-                        android:text="California, Walk Suite">
-
-                    </TextView>
-                    <TextView
-                        android:id="@+id/distance"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="7dp"
-                        android:textStyle="bold"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="2.5km">
-
-                    </TextView>
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:background="@drawable/like_grey">
-
-                    </ImageView>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="69dp"
-                android:layout_marginLeft="29dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="29dp"
-                android:orientation="horizontal"
-                android:textAlignment="center">
-
-                <LinearLayout
-                    android:background="@drawable/custom_buttom_detail_pet"
-                    android:layout_width="151dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="49dp"
+                    android:layout_height="434dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/detailAge"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="13dp"
-                        android:text="4 months"
-                        android:textAlignment="center"
-                        android:textSize="16dp"
-                        android:textStyle="bold">
+                        android:layout_height="140dp"
+                        android:orientation="vertical">
 
-                    </TextView>
+                        <TextView
+                            android:id="@+id/namePet"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="20dp"
+                            android:text="Maine Coon Cat"
+                            android:textColor="@color/colorGrey"
+                            android:textSize="25dp"
+                            android:textStyle="bold"></TextView>
 
-                    <TextView
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginLeft="35dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/icon_location">
+
+                            </ImageView>
+
+                            <TextView
+                                android:id="@+id/location"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="15dp"
+                                android:text="California, Walk Suite"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/distance"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginTop="15dp"
+                                android:text="2.5km"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:background="@drawable/like_grey">
+
+                            </ImageView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="69dp"
+                        android:layout_marginLeft="29dp"
                         android:layout_marginTop="5dp"
-                        android:text="Age"
-                        android:textAlignment="center"
-                        android:textSize="12dp"
-                        android:textStyle="bold">
+                        android:layout_marginRight="29dp"
+                        android:orientation="horizontal"
+                        android:textAlignment="center">
 
-                    </TextView>
+                        <LinearLayout
+                            android:layout_width="151dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="49dp"
+                            android:background="@drawable/custom_buttom_detail_pet"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/detailAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="4 months"
+                                android:textAlignment="center"
+                                android:textSize="16dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="Age"
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="151dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="12dp"
+                            android:background="@drawable/custom_buttom_detail_pet"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/detailBreed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:text="Pastor aleman"
+                                android:textAlignment="center"
+                                android:textSize="16dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="Breed"
+                                android:textAlignment="center"
+                                android:textSize="12dp"
+                                android:textStyle="bold">
+
+                            </TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="29dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="Pet story"
+                            android:textSize="22dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:lineSpacingExtra="4dp"
+                            android:text="swhshwgswsvghwghvswghsvhwhgbnwswhs wjb swsbw bs wjswnmsnws nmws nmwm snwsn mw nmswn mmswn mswn m sw."
+                            android:textSize="17dp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="29dp"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/user_picture"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/dog_profile"
+                            app:civ_border_color="@color/colorButton"
+                            app:civ_border_width="2dp">
+
+                        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="50dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="15dp"
+                                android:text="Posted by"
+                                android:textStyle="bold"></TextView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="15dp"
+                                android:text="Sergio Montoya"
+                                android:textSize="15dp"
+                                android:textStyle="bold"></TextView>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/custom_button"
+                            android:text="Contact me"
+                            android:textColor="@color/colorWhite"
+                            android:textStyle="bold">
+
+                        </Button>
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
-
-                <LinearLayout
-                    android:background="@drawable/custom_buttom_detail_pet"
-                    android:layout_width="151dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginRight="12dp">
-
-                    <TextView
-                        android:id="@+id/detailBreed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pastor aleman"
-                        android:textAlignment="center"
-                        android:layout_marginTop="13dp"
-                        android:textSize="16dp"
-                        android:textStyle="bold">
-
-                    </TextView>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Breed"
-                        android:textAlignment="center"
-                        android:layout_marginTop="5dp"
-                        android:textSize="12dp"
-                        android:textStyle="bold">
-
-                    </TextView>
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="29dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginRight="29dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:text="Pet story"
-                    android:textSize="22dp"
-                    android:textStyle="bold">
-
-                </TextView>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="swhshwgswsvghwghvswghsvhwhgbnwswhs wjb swsbw bs wjswnmsnws nmws nmwm snwsn mw nmswn mmswn mswn m sw."
-                    android:lineSpacingExtra="4dp"
-                    android:textSize="17dp">
-
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="29dp"
-                android:layout_marginLeft="29dp"
-                android:orientation="horizontal">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/user_picture"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/dog_profile"
-                app:civ_border_width="2dp"
-                app:civ_border_color="@color/colorButton">
-
-            </de.hdodenhof.circleimageview.CircleImageView>
-
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:textStyle="bold"
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:text="Posted by">
-                    </TextView>
-                    <TextView
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:text="Sergio Montoya">
-                    </TextView>
-
-                </LinearLayout>
-
-                <Button
-                    android:background="@drawable/custom_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Contact me"
-                    android:textColor="@color/colorWhite"
-                    android:textStyle="bold">
-
-                </Button>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
 
 
     </LinearLayout>
+
+
+</LinearLayout>
+    </ScrollView>
 </RelativeLayout>
