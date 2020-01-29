@@ -24,6 +24,7 @@
             android:id="@+id/dogFilterButton">
 
             <ImageView
+
                 android:background="@drawable/dog"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -117,7 +118,8 @@
     android:layout_height="100dp"
     android:layout_marginTop="190dp"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/seekBarFilter">
 
     <SeekBar
 
