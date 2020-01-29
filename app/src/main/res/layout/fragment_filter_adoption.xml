@@ -21,7 +21,8 @@
             android:layout_height="60dp"
             android:layout_marginRight="15dp"
             android:orientation="horizontal"
-            android:id="@+id/dogFilterButton">
+            android:id="@+id/dogFilterButton"
+            android:clickable="true">
 
             <ImageView
 

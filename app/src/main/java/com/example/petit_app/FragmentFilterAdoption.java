@@ -1,5 +1,6 @@
 package com.example.petit_app;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -69,6 +70,35 @@ public class FragmentFilterAdoption extends Fragment {
 
                 adapterImagesPets.notifyDataSetChanged();
             }
+        });
+
+        dogFilterButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+            }
+        });
+        catFilterButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+            }
+        });
+        otherPetFilterButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+            }
+
         });
 
 
