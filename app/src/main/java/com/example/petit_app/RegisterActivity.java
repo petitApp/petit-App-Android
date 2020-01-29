@@ -3,6 +3,7 @@ package com.example.petit_app;
 import android.app.AppComponentFactory;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
@@ -72,7 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
     //Method to check inputs of the login view
     private void checkInputsRegister(String username, String email, String pass, String confirmPass, CheckBox age) {
 
@@ -89,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -105,7 +104,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -122,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
@@ -138,15 +135,12 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                registerPOST(email, pass, username);
+
                 (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
 
             }
         }
-        /*
-*/
-
-
+        registerPOST(pass, email, username);
     }
 
     private boolean checkEmail(String email) {
@@ -166,16 +160,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkPass(String pass) {
-        if (pass.length() <= 8) {
+        if (pass.length() < 8) {
             input_password.setError("The password must be greater than 8 characters");
             return false;
         }
-        if (!pass.matches("(?=.*[0-9]).*")) {
+        if (!pass.matches("(?=.*[0-8]).*")) {
             input_password.setError("The password must contains at least one number");
-            return false;
-        }
-        if (!pass.matches("(?=.*[A-Z]).*")) {
-            input_password.setError("The password must contains one upper case letter");
             return false;
         }
 
@@ -202,10 +192,12 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private void registerPOST(String email, String password, String user_name)
+    private void registerPOST(String password, String email, String user_name)
     {
         Log.d("eeer","addede");
-        APIService.createUser(email, password, user_name).enqueue(new Callback<User>() {
+        Log.d("OBJETO:", email);
+        User user1 = new User(password, email, user_name);
+        APIService.createUser(user1).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {

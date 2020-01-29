@@ -20,14 +20,13 @@
             android:background="@drawable/fondo">
 
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_picture"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logovblanco"/>
 
-        <ImageView
-
-            android:layout_width="wrap_content"
-            android:layout_height="190dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="170dp"
-            android:background="@drawable/logovblanco" />
 
 
         </LinearLayout>
@@ -55,17 +54,15 @@
             />
 
         <EditText
+            android:background="@drawable/custom_buttom_formulary"
             android:padding="10dp"
             android:paddingLeft="10dp"
-            android:text="@color/colorGrey"
-            android:background="@drawable/custom_buttom_formulary"
+            android:textColorHint="@color/colorGrey"
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword"
-           />
-
+            />
         <TextView
             android:textColor="@color/colorButton"
             android:layout_width="fill_parent"

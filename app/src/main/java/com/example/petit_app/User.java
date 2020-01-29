@@ -1,8 +1,14 @@
 package com.example.petit_app;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+
+    @SerializedName("password")
     private String password;
+    @SerializedName("email")
     private String email;
+    @SerializedName("user_name")
     private String userName;
 
     public User(String password, String email, String userName) {
@@ -10,7 +16,13 @@ public class User {
         this.email = email;
         this.userName = userName;
     }
-
+    public User(String password, String email){
+        this.password = password;
+        this.email = email;
+    }
+    public User(String email){
+        this.email = email;
+    }
     public String getPassword() { return password; }
     public void setPassword(String value) { this.password = value; }
 
