@@ -38,31 +38,13 @@ public class FragmentPetDetail extends Fragment {
         detailBreed = RootView.findViewById(R.id.detailBreed);
         APIService = ApiUtils.getAPIService();
 
-        getAnimalInfo();
+
 
 
         return RootView;
     }
 
 
-    private void getAnimalInfo()
-    {
-        Call<String> call = APIService.getInfo();
-        call.enqueue(new Callback<String>(){
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                    String petName = response.body();
-                    namePet.setText(petName);
 
-                    Log.d("RESPONSE_OK", "posts loaded from API");
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("RESPONSE_FAILURE", "error loading from API");
-
-            }
-        });
-    }
 
 }

@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 
@@ -20,12 +21,18 @@ public class AdapterImagesPets  extends ArrayAdapter {
     int item_Layaut;
     ArrayList<Animal> data;
 
-    public AdapterImagesPets(@NonNull Context context, int item_Layaut, ArrayList data) {
-        super(context, item_Layaut, data);
+    public AdapterImagesPets(@NonNull Context context, int item_Layaut, GetAnimalsRS data) {
+        super(context, item_Layaut, Collections.singletonList(data));
         this.context = context;
         this.item_Layaut = item_Layaut;
-        this.data = data;
+        this.data = data.animals;
     }
+
+    public void setData(GetAnimalsRS data) {
+        this.data = data.animals;
+        this.notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent){
@@ -33,6 +40,10 @@ public class AdapterImagesPets  extends ArrayAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(item_Layaut, parent, false);
+        }
+
+        if(data == null || data.isEmpty()){
+            return null;
         }
 
         String image = data.get(position).getPrefered_photo();
@@ -46,7 +57,7 @@ public class AdapterImagesPets  extends ArrayAdapter {
 
         String location = data.get(position).getName();
         TextView elementLocation = convertView.findViewById(R.id.locationPetCard);
-        elementName.setText(name);
+        elementLocation.setText(location);
 
         return convertView;
     }

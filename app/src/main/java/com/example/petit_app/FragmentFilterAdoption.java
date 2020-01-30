@@ -5,16 +5,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -32,8 +35,12 @@ public class FragmentFilterAdoption extends Fragment {
     TabLayout tabs;
     TabItem ageFilter,distanceFilter, raceFilter;
     LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton, seekBarFilter;
-    ArrayList<Animal> elementItemArray = new ArrayList<>();
+    ArrayList<Animal> petsArrayGrid = new ArrayList<>();
+    GetAnimalsRS getAnimalsRS = new GetAnimalsRS();
+    Animal animal;
 
+
+    private APIService APIService;
 
     @Nullable
     @Override
@@ -51,12 +58,11 @@ public class FragmentFilterAdoption extends Fragment {
         catFilterButton = (LinearLayout) RootView.findViewById((R.id.catFilterButton));
         dogFilterButton = (LinearLayout) RootView.findViewById((R.id.dogFilterButton));
 
-        Animal animal = new Animal("Simba","masculino","Avd Fuenlabrada");
-        elementItemArray.add(animal);
-        elementItemArray.add(animal);
-        elementItemArray.add(animal);
-        adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, elementItemArray);
-        gridView.setAdapter(adapterImagesPets);
+
+        APIService = ApiUtils.getAPIService();
+
+        getAnimalInfo();
+
 
         seekBarFilter.setVisibility(View.GONE);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,11 +105,36 @@ public class FragmentFilterAdoption extends Fragment {
             public void onTabReselected(TabLayout.Tab tab) {
                
             }
-
         });
 
 
         return RootView;
+    }
+
+
+    private void getAnimalInfo()
+    {
+        Call<GetAnimalsRS> call = APIService.getInfo();
+        call.enqueue(new Callback<GetAnimalsRS>(){
+            @Override
+            public void onResponse(Call<GetAnimalsRS> call, Response<GetAnimalsRS> response) {
+                getAnimalsRS = response.body();
+
+                adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, getAnimalsRS);
+                adapterImagesPets.setData(getAnimalsRS);
+                gridView.setAdapter(adapterImagesPets);
+
+
+                Log.d("RESPONSE_OK", getAnimalsRS.animals.toString());
+
+            }
+
+            @Override
+            public void onFailure(Call<GetAnimalsRS> call, Throwable t) {
+                Log.d("RESPONSE_FAILURE", "error loading from API");
+
+            }
+        });
     }
 
 

@@ -47,10 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
-                // checkInputs(email, pass);
+                checkInputs(email, pass);
 
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class );
-        startActivity(intent);
 
 
 
@@ -116,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class );
+                    startActivity(intent);
 
                 }
             }
