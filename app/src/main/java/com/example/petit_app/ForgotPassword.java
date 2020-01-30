@@ -54,7 +54,7 @@ public class ForgotPassword extends AppCompatActivity {
             input_email_forgotPassword.setError("Empty inputs are not allowed");
         }
         else if(checkEmail(email)){
-            (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+            (Toast.makeText(getApplicationContext(), "Email sent", Toast.LENGTH_LONG)).show();
             recoverPOST(email);
         }else{
             Log.d("tusmuertos", email);
