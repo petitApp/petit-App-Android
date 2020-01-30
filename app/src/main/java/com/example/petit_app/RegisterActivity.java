@@ -67,14 +67,14 @@ public class RegisterActivity extends AppCompatActivity {
                  String confirmPass = input_confirm_password.getText().toString();
 
 
-                checkInputsRegister(username, email, pass,  confirmPass, checkAge);
+                checkInputsRegister(username, email, pass,  confirmPass);
 
 
             }
         });
     }
     //Method to check inputs of the login view
-    private void checkInputsRegister(String username, String email, String pass, String confirmPass, CheckBox age) {
+    private void checkInputsRegister(String username, String email, String pass, String confirmPass) {
 
         //Check if inputs are empty
         if(username.isEmpty()){
@@ -83,30 +83,14 @@ public class RegisterActivity extends AppCompatActivity {
         }else{
             Log.d("valor del email", "no está vacio");
             checkUsername(username);
-            if (checkEmail(email)==true
-                    && checkPass(pass)==true
-                    && confirmPassword(pass, confirmPass)==true
-                    && validateCheckAge(checkAge)==true
-                    &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
-
-            }
         }
 
         if (email.isEmpty()){
             input_email.setError("Empty inputs are not allowed");
         }else{
             checkEmail(email);
-            if (checkEmail(email)==true
-                    && checkPass(pass)==true
-                    && confirmPassword(pass, confirmPass)==true
-                    && validateCheckAge(checkAge)==true
-                    &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
-
-            }
         }
 
         if(pass.isEmpty()){
@@ -114,33 +98,25 @@ public class RegisterActivity extends AppCompatActivity {
             input_password.setError("Empty inputs are not allowed");
         }else{
             checkPass(pass);
-            if (checkEmail(email)==true
-                    && checkPass(pass)==true
-                    && confirmPassword(pass, confirmPass)==true
-                    && validateCheckAge(checkAge)==true
-                    &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
-
-            }
         }
 
         if(!validateCheckAge(checkAge)){
             (Toast.makeText(getApplicationContext(), "You must be older than 18 years old.", Toast.LENGTH_LONG)).show();
         }else{
             validateCheckAge(checkAge);
-            if (checkEmail(email)==true
-                    && checkPass(pass)==true
-                    && confirmPassword(pass, confirmPass)==true
-                    && validateCheckAge(checkAge)==true
-                    &&checkUsername(username)==true) {
 
-
-                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
-
-            }
         }
-        registerPOST(pass, email, username);
+        if (checkEmail(email)==true
+                && checkPass(pass)==true
+                && confirmPassword(pass, confirmPass)==true
+                && validateCheckAge(checkAge)==true
+                &&checkUsername(username)==true) {
+            
+            (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
+            registerPOST(pass, email, username);
+        }
+
     }
 
     private boolean checkEmail(String email) {
@@ -203,7 +179,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
 
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
-
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class );
+                    startActivity(intent);
                 }
             }
 
