@@ -40,7 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox checkAge;
 
     private APIService APIService;
-    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 checkInputsRegister(username, email, pass,  confirmPass, checkAge);
+
 
             }
         });
