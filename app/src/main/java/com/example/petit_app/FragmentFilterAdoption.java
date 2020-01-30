@@ -62,7 +62,7 @@ public class FragmentFilterAdoption extends Fragment {
 
         APIService = ApiUtils.getAPIService();
 
-        getAnimalInfo();
+        //getAnimalInfo();
 
 
         seekBarFilter.setVisibility(View.GONE);
@@ -83,8 +83,8 @@ public class FragmentFilterAdoption extends Fragment {
             @Override
             public void onClick(View view) {
                 dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
-                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
             }
         });
         catFilterButton.setOnClickListener(new View.OnClickListener(){
@@ -92,8 +92,8 @@ public class FragmentFilterAdoption extends Fragment {
             @Override
             public void onClick(View view) {
                 catFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
-                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
             }
         });
         otherPetFilterButton.setOnClickListener(new View.OnClickListener(){
@@ -101,8 +101,8 @@ public class FragmentFilterAdoption extends Fragment {
             @Override
             public void onClick(View view) {
                 otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
-                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_detail_pet);
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
             }
 
         });
