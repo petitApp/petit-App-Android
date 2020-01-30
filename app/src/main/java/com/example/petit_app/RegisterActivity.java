@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
 
             }
         }
@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
 
             }
         }
@@ -120,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                     && validateCheckAge(checkAge)==true
                     &&checkUsername(username)==true) {
 
-                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
 
             }
         }
@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                     &&checkUsername(username)==true) {
 
 
-                (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
 
             }
         }
@@ -153,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
     private boolean checkUsername(String userName){
         if (userName.length() <= 3) {
-            input_username.setError("The user name must be greater than 3 characters");
+            input_username.setError("The username must be greater than 3 characters");
             return false;
         }
         return true;
@@ -165,7 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
         if (!pass.matches("(?=.*[0-8]).*")) {
-            input_password.setError("The password must contains at least one number");
+            input_password.setError("The password must contain at least one number");
             return false;
         }
 
@@ -176,7 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean confirmPassword(String password , String confirmPassword){
 
         if(!password.equals(confirmPassword) || password.isEmpty() ){
-            input_confirm_password.setError("Introduce the same password");
+            input_confirm_password.setError("Passwords must match");
             Log.d("tusmuertos", password);
             Log.d("tusmuertos2", confirmPassword);
             return false;
@@ -209,7 +209,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
 
             }
         });

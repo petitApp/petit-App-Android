@@ -48,10 +48,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = input_email.getText().toString();
                 String pass = input_password.getText().toString();
                 checkInputs(email, pass);
-
-
-
-
             }
         });
     }
@@ -114,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
-                    (Toast.makeText(getApplicationContext(), "Welcome to Pet it", Toast.LENGTH_LONG)).show();
+                    (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class );
                     startActivity(intent);
 
@@ -123,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "User not found o algo de eso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_SHORT).show();
 
             }
         });
