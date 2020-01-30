@@ -100,7 +100,7 @@
             android:id="@+id/raceFilter"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Race"/>
+            android:text="Breed"/>
         <com.google.android.material.tabs.TabItem
             android:id="@+id/distanceFilter"
             android:layout_width="match_parent"
