@@ -25,5 +25,5 @@ public interface APIService {
 
 
     @GET("api/animals")
-    Call<GetAnimalsRS> getInfo();
+    Call<Animal> getInfo();
 }
