@@ -19,6 +19,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -29,16 +30,14 @@ import java.util.ArrayList;
 /**
 
  */
-public class FragmentFilterAdoption extends Fragment {
+public class FragmentFilterAdoption extends Fragment implements AdapterImagesPets.ClickOnPet{
 
     AdapterImagesPets adapterImagesPets;
     GridView gridView;
     TabLayout tabs;
     TabItem ageFilter,distanceFilter, raceFilter;
     LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton, seekBarFilter;
-    ArrayList<Animal> petsArrayGrid = new ArrayList<>();
-    GetAnimalsRS getAnimalsRS = new GetAnimalsRS();
-    Animal animal;
+    Animal animal = new Animal();
 
 
     private APIService APIService;
@@ -61,15 +60,15 @@ public class FragmentFilterAdoption extends Fragment {
 
 
         APIService = ApiUtils.getAPIService();
-
+        adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, animal.animals, this);
         getAnimalInfo();
 
 
         seekBarFilter.setVisibility(View.GONE);
+        /*
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
 
                 FragmentPetDetail fragmentPetDetail = new FragmentPetDetail();
                 ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
@@ -77,7 +76,7 @@ public class FragmentFilterAdoption extends Fragment {
                 adapterImagesPets.notifyDataSetChanged();
             }
         });
-
+*/
         dogFilterButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -144,28 +143,30 @@ public class FragmentFilterAdoption extends Fragment {
 
     private void getAnimalInfo()
     {
-        Call<GetAnimalsRS> call = APIService.getInfo();
-        call.enqueue(new Callback<GetAnimalsRS>(){
+        Call<Animal> call = APIService.getInfo();
+        call.enqueue(new Callback<Animal>(){
             @Override
-            public void onResponse(Call<GetAnimalsRS> call, Response<GetAnimalsRS> response) {
-                getAnimalsRS = response.body();
-
-                adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, getAnimalsRS);
-                adapterImagesPets.setData(getAnimalsRS);
+            public void onResponse(Call<Animal> call, Response<Animal> response) {
+                animal = response.body();
+                adapterImagesPets.notifyDataSetInvalidated();
+                adapterImagesPets.setData(animal);
                 gridView.setAdapter(adapterImagesPets);
-
-
-                Log.d("RESPONSE_OK", getAnimalsRS.animals.toString());
+                Log.d("RESPONSE_OK", animal.animals.toString());
 
             }
 
             @Override
-            public void onFailure(Call<GetAnimalsRS> call, Throwable t) {
+            public void onFailure(Call<Animal> call, Throwable t) {
                 Log.d("RESPONSE_FAILURE", "error loading from API");
 
             }
         });
     }
 
+
+    @Override
+    public void onClick(Animal animal) {
+        Toast.makeText(getContext(), animal.getName(), Toast.LENGTH_LONG).show();
+    }
 
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentPetDetail extends Fragment {
+public class FragmentPetDetail extends Fragment  {
 
 
     TextView namePet, location, distance, detailAge, detailBreed;
@@ -43,8 +44,6 @@ public class FragmentPetDetail extends Fragment {
 
         return RootView;
     }
-
-
 
 
 }

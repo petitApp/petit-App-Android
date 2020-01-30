@@ -2,7 +2,11 @@ package com.example.petit_app;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class Animal {
+
+    ArrayList<Animal> animals = new ArrayList<Animal>();
 
     public Animal(String name, String sex, String age, String location, String description,
                   String prefered_photo, String id_owner, String id_breed) {
@@ -15,6 +19,7 @@ public class Animal {
         this.id_owner = id_owner;
         this.id_breed = id_breed;
     }
+
 
     public Animal(String name, String location, String prefered_photo) {
         this.name = name;
