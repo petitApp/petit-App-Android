@@ -1,6 +1,7 @@
 package com.example.petit_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,13 +19,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentPetDetail extends Fragment  {
+public class FragmentPetDetail extends Fragment {
 
 
     TextView namePet, location, distance, detailAge, detailBreed;
+    AdapterImagesPets adapterImagesPets;
+    Animal animal = new Animal();
 
     private APIService APIService;
     Context context;
+
+    FragmentPetDetail(Animal animal){
+        this.animal = animal;
+    }
 
     @Nullable
     @Override
@@ -39,8 +46,13 @@ public class FragmentPetDetail extends Fragment  {
         detailBreed = RootView.findViewById(R.id.detailBreed);
         APIService = ApiUtils.getAPIService();
 
+        namePet.setText(animal.getName());
+        location.setText(animal.getLocation());
+        detailAge.setText(animal.getAge());
+        detailBreed.setText(animal.getId_breed());
 
 
+        Toast.makeText(getContext(), animal.getName(), Toast.LENGTH_LONG).show();
 
         return RootView;
     }

@@ -1,5 +1,6 @@
 package com.example.petit_app;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -59,24 +60,14 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
         dogFilterButton = (LinearLayout) RootView.findViewById((R.id.dogFilterButton));
 
 
+
         APIService = ApiUtils.getAPIService();
         adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, animal.animals, this);
         getAnimalInfo();
 
 
         seekBarFilter.setVisibility(View.GONE);
-        /*
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                FragmentPetDetail fragmentPetDetail = new FragmentPetDetail();
-                ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
-
-                adapterImagesPets.notifyDataSetChanged();
-            }
-        });
-*/
         dogFilterButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -166,7 +157,9 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
     @Override
     public void onClick(Animal animal) {
-        Toast.makeText(getContext(), animal.getName(), Toast.LENGTH_LONG).show();
+        FragmentPetDetail fragmentPetDetail = new FragmentPetDetail(animal);
+        ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
+
     }
 
 }
