@@ -1,6 +1,5 @@
 package com.example.petit_app;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,17 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
 
 
 /**
@@ -39,6 +33,7 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
     LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton, seekBarFilter;
     Animal animal = new Animal();
 
+    private int check = 1;
 
     private APIService APIService;
 
@@ -77,6 +72,8 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
             }
         });
 */
+
+
         dogFilterButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -84,7 +81,11 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
                 dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
                 catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
                 otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+
+
             }
+
+
         });
         catFilterButton.setOnClickListener(new View.OnClickListener(){
 
@@ -93,6 +94,7 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
                 catFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
                 dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
                 otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+
             }
         });
         otherPetFilterButton.setOnClickListener(new View.OnClickListener(){
@@ -102,12 +104,13 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
                 otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
                 catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
                 dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+
             }
 
         });
 
 
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+    tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab raceFilter) {
                 switch (tabs.getSelectedTabPosition()) {
@@ -141,6 +144,21 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
     }
 
 
+    private int selectedButtonFilter(int check, LinearLayout linearLayout){
+
+
+        if(check ==1){
+            linearLayout.setBackgroundResource(R.drawable.custom_buttom_selected);
+            check = 0;
+        }else{
+            linearLayout.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+            check = 1;
+        }
+
+        return check;
+     //   Log.d(TAG, String.valueOf(check));
+
+    }
     private void getAnimalInfo()
     {
         Call<Animal> call = APIService.getInfo();

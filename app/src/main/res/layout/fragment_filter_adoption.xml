@@ -129,9 +129,8 @@
         android:layout_height="50dp"
         android:max="100"
         android:progress="0"
-       android:progressTint="@color/colorButton">
+       android:progressTint="@color/colorButton" />
 
-    </SeekBar>
 
 </LinearLayout>
     <LinearLayout

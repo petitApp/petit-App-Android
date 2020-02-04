@@ -9,7 +9,7 @@ public class Animal {
     ArrayList<Animal> animals = new ArrayList<Animal>();
 
     public Animal(String name, String sex, String age, String location, String description,
-                  String prefered_photo, String id_owner, String id_breed) {
+                  String prefered_photo, String id_owner, String id_breed, String id_type) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -18,6 +18,7 @@ public class Animal {
         this.prefered_photo = prefered_photo;
         this.id_owner = id_owner;
         this.id_breed = id_breed;
+        this.id_type = id_type;
     }
 
 
@@ -98,6 +99,14 @@ public class Animal {
         this.id_breed = id_breed;
     }
 
+    public String getId_type() {
+        return id_type;
+    }
+
+    public void setId_type(String id_type) {
+        this.id_type = id_type;
+    }
+
     @SerializedName("name")
     private String name;
     @SerializedName("sex")
@@ -114,5 +123,6 @@ public class Animal {
     private String id_owner;
     @SerializedName("id_breed")
     private String id_breed;
-
+    @SerializedName("id_type")
+    private String id_type;
 }
