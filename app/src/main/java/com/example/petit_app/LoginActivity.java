@@ -111,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
-                    (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class );
                     startActivity(intent);
 

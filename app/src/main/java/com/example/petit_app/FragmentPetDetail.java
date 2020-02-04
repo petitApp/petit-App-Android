@@ -52,8 +52,6 @@ public class FragmentPetDetail extends Fragment {
         detailBreed.setText(animal.getId_breed());
 
 
-        Toast.makeText(getContext(), animal.getName(), Toast.LENGTH_LONG).show();
-
         return RootView;
     }
 
