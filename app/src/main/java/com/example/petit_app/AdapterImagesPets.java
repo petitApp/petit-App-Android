@@ -66,7 +66,7 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
         TextView elementLocation = convertView.findViewById(R.id.locationPetCard);
         elementLocation.setText(location);
 
-        elementName.setOnClickListener(new View.OnClickListener() {
+        convertView.findViewById(R.id.adapter_container).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onClick(data.get(position));

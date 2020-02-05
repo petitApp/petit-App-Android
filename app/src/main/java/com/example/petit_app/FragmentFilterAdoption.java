@@ -1,5 +1,6 @@
 package com.example.petit_app;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -15,9 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +38,10 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
     AdapterImagesPets adapterImagesPets;
     GridView gridView;
     TabLayout tabs;
+    SeekBar seekBarFilter;
+    EditText breedFilterET, ageFilterET;
     TabItem ageFilter,distanceFilter, raceFilter;
-    LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton, seekBarFilter;
+    LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton ;
     Animal animal = new Animal();
 
 
@@ -53,10 +58,14 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
         distanceFilter = (TabItem) RootView.findViewById((R.id.distanceFilter));
         raceFilter = (TabItem) RootView.findViewById((R.id.raceFilter));
 
-        seekBarFilter = (LinearLayout) RootView.findViewById((R.id.seekBarFilter));
+
         otherPetFilterButton = (LinearLayout) RootView.findViewById((R.id.otherPetFilterButton));
         catFilterButton = (LinearLayout) RootView.findViewById((R.id.catFilterButton));
         dogFilterButton = (LinearLayout) RootView.findViewById((R.id.dogFilterButton));
+
+        seekBarFilter = (SeekBar) RootView.findViewById((R.id.seekBarFilter));
+        breedFilterET = (EditText) RootView.findViewById((R.id.breedFilterET));
+        ageFilterET = (EditText) RootView.findViewById((R.id.ageFilterET));
 
 
         APIService = ApiUtils.getAPIService();
@@ -65,18 +74,7 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
 
         seekBarFilter.setVisibility(View.GONE);
-        /*
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                FragmentPetDetail fragmentPetDetail = new FragmentPetDetail();
-                ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
-
-                adapterImagesPets.notifyDataSetChanged();
-            }
-        });
-*/
         dogFilterButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -112,14 +110,20 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
             public void onTabSelected(TabLayout.Tab raceFilter) {
                 switch (tabs.getSelectedTabPosition()) {
                     case 0:
+                        breedFilterET.setVisibility(View.VISIBLE);
                         seekBarFilter.setVisibility(View.GONE);
+                        ageFilterET.setVisibility(View.GONE);
                         break;
 
                     case 1:
                         seekBarFilter.setVisibility(View.VISIBLE);
+                        breedFilterET.setVisibility(View.GONE);
+                        ageFilterET.setVisibility(View.GONE);
                         break;
                     case 2:
+                        ageFilterET.setVisibility(View.VISIBLE);
                         seekBarFilter.setVisibility(View.GONE);
+                        breedFilterET.setVisibility(View.GONE);
                         break;
 
                 }
@@ -166,7 +170,9 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
     @Override
     public void onClick(Animal animal) {
-        Toast.makeText(getContext(), animal.getName(), Toast.LENGTH_LONG).show();
+        FragmentPetDetail fragmentPetDetail = new FragmentPetDetail(animal);
+        ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
+
     }
 
 }

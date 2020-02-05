@@ -121,15 +121,33 @@
     android:layout_marginTop="190dp"
     android:gravity="center"
     android:orientation="vertical"
-    android:id="@+id/seekBarFilter">
+    >
+
+    <EditText
+        android:id="@+id/breedFilterET"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:text="Pastor Alemán"
+        android:textAlignment="center"
+        android:textSize="16dp"/>
+    <EditText
+        android:id="@+id/ageFilterET"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:text="2 años"
+        android:textAlignment="center"
+        android:textSize="16dp"/>
 
     <SeekBar
-
+        android:id="@+id/seekBarFilter"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:max="100"
         android:progress="0"
-       android:progressTint="@color/colorButton">
+        android:progressTint="@color/colorButton"
+        android:visibility="gone">
 
     </SeekBar>
 
@@ -137,7 +155,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginTop="300dp">
+        android:layout_marginTop="300dp"
+        android:id="@+id/linearLayout">
+
         <GridView
             android:layout_margin="60dp"
             android:background="@color/colorWhite"
