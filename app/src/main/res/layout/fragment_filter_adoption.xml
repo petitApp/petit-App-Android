@@ -147,7 +147,7 @@
         android:max="100"
         android:progress="0"
         android:progressTint="@color/colorButton"
-        android:visibility="gone">
+        android:visibility="gone"/>
 
 
 </LinearLayout>
