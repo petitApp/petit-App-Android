@@ -2,6 +2,7 @@ package com.example.petit_app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +22,12 @@ public class ForgotPassword extends AppCompatActivity {
     EditText input_email_forgotPassword;
     Button btn_recover;
     private APIService APIService;
-    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         APIService = ApiUtils.getAPIService();
-
         input_email_forgotPassword = findViewById(R.id.input_email_forgotPassword);
         btn_recover = findViewById(R.id.btn_recover);
 
@@ -72,12 +72,20 @@ public class ForgotPassword extends AppCompatActivity {
 
     private void recoverPOST(String email)
     {
+
+
+
         User user = new User(email);
         APIService.recoverPass(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()) {
+
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
+                    Intent intent = new Intent(ForgotPassword.this, LoginActivity.class );
+                    startActivity(intent);
+
+
                 }
             }
 

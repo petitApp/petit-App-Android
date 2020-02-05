@@ -2,6 +2,7 @@ package com.example.petit_app;
 
 import android.app.AppComponentFactory;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText input_email, input_password, input_username, input_confirm_password ;
     Button btn_register;
     CheckBox checkAge;
-
+    Dialog dialogLoading;
     private APIService APIService;
 
     @Override
@@ -51,9 +52,9 @@ public class RegisterActivity extends AppCompatActivity {
         input_username = findViewById(R.id.input_username);
         btn_register = findViewById(R.id.btn_register);
         input_confirm_password = findViewById(R.id.input_confirm_password);
-
+        dialogLoading = new Dialog(RegisterActivity.this);
         APIService = ApiUtils.getAPIService();
-
+        dialogLoading.setContentView(R.layout.popup_loading);
 
 
         //Click Listener del botón del login
@@ -113,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                 && validateCheckAge(checkAge)==true
                 &&checkUsername(username)==true) {
             
-            (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
+
             registerPOST(pass, email, username);
         }
 
@@ -172,15 +173,21 @@ public class RegisterActivity extends AppCompatActivity {
     {
         Log.d("eeer","addede");
         Log.d("OBJETO:", email);
+        dialogLoading.show();
+        dialogLoading.setCancelable(false);
+
         User user1 = new User(password, email, user_name);
         APIService.createUser(user1).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                dialogLoading.dismiss();
                 if(response.isSuccessful()) {
 
                     Log.d("RESPUESTA DEL MENSAJE", response.toString());
+                    (Toast.makeText(getApplicationContext(), "Welcome to PetIt", Toast.LENGTH_LONG)).show();
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class );
                     startActivity(intent);
+
                 }
             }
 
@@ -188,6 +195,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
 
+                dialogLoading.dismiss();
             }
         });
 
