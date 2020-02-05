@@ -1,7 +1,5 @@
 package com.example.petit_app;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,13 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -77,9 +72,9 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
             @Override
             public void onClick(View view) {
-                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
-                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected_dog);
+                catFilterButton.setBackgroundResource(R.drawable.custom_button_filter_cat);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_button_filter_others);
 
 
             }
@@ -90,9 +85,9 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
             @Override
             public void onClick(View view) {
-                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
-                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected_cat);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_button_filter_dog);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_button_filter_others);
 
             }
         });
@@ -100,9 +95,9 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
             @Override
             public void onClick(View view) {
-                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected);
-                catFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
-                dogFilterButton.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+                otherPetFilterButton.setBackgroundResource(R.drawable.custom_buttom_selected_others);
+                catFilterButton.setBackgroundResource(R.drawable.custom_button_filter_cat);
+                dogFilterButton.setBackgroundResource(R.drawable.custom_button_filter_dog);
 
             }
 
@@ -153,10 +148,10 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
 
         if(check ==1){
-            linearLayout.setBackgroundResource(R.drawable.custom_buttom_selected);
+            linearLayout.setBackgroundResource(R.drawable.custom_buttom_selected_dog);
             check = 0;
         }else{
-            linearLayout.setBackgroundResource(R.drawable.custom_buttom_filter_animal);
+            linearLayout.setBackgroundResource(R.drawable.custom_buttom_loading);
             check = 1;
         }
 
