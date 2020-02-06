@@ -53,10 +53,14 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
             return null;
         }
 
-        String image = data.get(position).getPrefered_photo();
-        Uri imageGallery = Uri.parse(image);
-        ImageView elementImage = convertView.findViewById(R.id.imagePetCard);
-        elementImage.setImageURI(imageGallery);
+        String image = data.get(position).getPicture();
+        if(image!= null) {
+            Uri imageGallery = Uri.parse(image);
+            ImageView elementImage = convertView.findViewById(R.id.imagePetCard);
+            elementImage.setImageURI(imageGallery);
+        }
+
+
 
         String name = data.get(position).getName();
         TextView elementName = convertView.findViewById(R.id.namePetCard);

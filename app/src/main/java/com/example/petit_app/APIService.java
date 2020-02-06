@@ -26,4 +26,7 @@ public interface APIService {
 
     @GET("api/animals")
     Call<Animal> getInfo();
+
+    @POST("api/animal")
+    Call<Animal> sendInfo(@Body Animal animal);
 }

@@ -3,8 +3,8 @@ package com.example.petit_app;
 public class ApiUtils {
     private ApiUtils() {}
 
-    private static final String BASE_URL = "http://192.168.6.129" +
-            "/trabajos/petit-api/public/";
+    private static final String BASE_URL = "http://192.168.6.58" +
+            "/petit-api-feature-animal-crud/public/";
 
     static APIService getAPIService() {
 
