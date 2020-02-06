@@ -50,16 +50,16 @@
                         android:layout_height="140dp"
                         android:orientation="vertical">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/namePet"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginLeft="35dp"
                             android:layout_marginTop="20dp"
-                            android:text="Maine Coon Cat"
+                            android:hint="Pet Name"
                             android:textColor="@color/colorGrey"
-                            android:textSize="25dp"
-                            android:textStyle="bold"></TextView>
+                            android:textSize="20dp"
+                            />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -123,27 +123,16 @@
                             android:background="@drawable/custom_buttom_detail_pet"
                             android:orientation="vertical">
 
-                            <TextView
+
+                            <EditText
                                 android:id="@+id/detailAge"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="13dp"
-                                android:text="4 months"
+                                android:hint="Age"
                                 android:textAlignment="center"
-                                android:textSize="16dp"
-                                android:textStyle="bold">
-
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Age"
-                                android:textAlignment="center"
-                                android:textSize="12dp"
-                                android:textStyle="bold">
-                            </TextView>
+                                android:textSize="13dp"
+                                android:textStyle="bold"/>
 
                         </LinearLayout>
 
@@ -154,28 +143,17 @@
                             android:background="@drawable/custom_buttom_detail_pet"
                             android:orientation="vertical">
 
-                            <TextView
+
+                            <EditText
                                 android:id="@+id/detailBreed"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="13dp"
-                                android:text="Pastor aleman"
+                                android:hint="Breed"
                                 android:textAlignment="center"
-                                android:textSize="16dp"
-                                android:textStyle="bold">
-
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="Breed"
-                                android:textAlignment="center"
-                                android:textSize="12dp"
-                                android:textStyle="bold">
-
-                            </TextView>
+                                android:textSize="13dp"
+                                android:textStyle="bold"
+                                />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -187,7 +165,17 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="29dp"
                         android:orientation="vertical">
-
+                        <Button
+                            android:id="@+id/btn_add_animal"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/custom_button"
+                            android:padding="12dp"
+                            android:text="ADD ANIMAL"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="13dp" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -198,12 +186,15 @@
                         </TextView>
 
                         <EditText
+                            android:id="@+id/petDescription"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:lineSpacingExtra="4dp"
                             android:textSize="17dp">
 
                         </EditText>
+
+
 
                     </LinearLayout>
                 </LinearLayout>

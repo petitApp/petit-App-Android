@@ -49,7 +49,7 @@ public class FragmentPetDetail extends Fragment {
         namePet.setText(animal.getName());
         location.setText(animal.getLocation());
         detailAge.setText(animal.getAge());
-        detailBreed.setText(animal.getId_breed());
+        detailBreed.setText(animal.getBreed());
 
 
         return RootView;

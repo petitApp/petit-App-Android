@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 FragmentFilterAdoption fragmentFilterAdoption = new FragmentFilterAdoption();
                 addFragment(fragmentFilterAdoption);
                 break;
+            case R.id.nav_create_animal:
+                FragmentCreateAnimal fragmentCreateAnimal = new FragmentCreateAnimal();
+                addFragment(fragmentCreateAnimal);
+                break;
+
         }
     }
 
