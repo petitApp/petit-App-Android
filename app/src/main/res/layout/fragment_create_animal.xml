@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentPetDetail">
+    tools:context=".FragmentPetDetail"
+    android:background="@color/colorWhiteBlue">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +17,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="340dp"
+                android:gravity="center"
                 android:background="@color/colorWhiteBlue">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -25,13 +27,12 @@
                     android:id="@+id/profile_image"
                     android:layout_width="280dp"
                     android:layout_height="280dp"
-                    android:src="@drawable/dog_profile"
-                    app:civ_border_width="4dp"
-                    app:civ_border_color="@color/colorButton"
-                    android:layout_marginLeft="62dp"
-                    android:layout_marginRight="62dp"
+                    android:src="@drawable/default_picture"
+                    app:civ_border_width="14dp"
+                    app:civ_border_color="@color/colorBorderImage"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"
+
+
                     />
             </LinearLayout>
 
@@ -42,161 +43,291 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="434dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"
+                        android:layout_height="60dp"
                         android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/namePet"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="35dp"
-                            android:layout_marginTop="20dp"
-                            android:hint="Pet Name"
-                            android:textColor="@color/colorGrey"
-                            android:textSize="20dp"
-                            />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="70dp"
                             android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginLeft="35dp"
-                                android:layout_marginTop="15dp"
-                                android:background="@drawable/icon_location">
-
-                            </ImageView>
-
                             <TextView
-                                android:id="@+id/location"
-                                android:layout_width="140dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="15dp"
-                                android:text="California, Walk Suite"
-                                android:textStyle="bold">
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:textStyle="bold"
+                                android:text="Pet form"
+                                android:textSize="30dp"/>
 
-                            </TextView>
 
-                            <TextView
-                                android:id="@+id/distance"
-                                android:layout_width="100dp"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="7dp"
-                                android:layout_marginTop="15dp"
-                                android:text="2.5km"
-                                android:textStyle="bold">
+                        </RelativeLayout>
 
-                            </TextView>
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:background="@drawable/like_grey">
-
-                            </ImageView>
-
-                        </LinearLayout>
                     </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:gravity="center_vertical">
+    <EditText
+        android:id="@+id/namePet"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="55dp"
+
+        android:hint="Pet name"
+        android:textColor="@color/colorGrey"
+        android:textSize="20dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+       >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:civ_circle_background_color="@color/colorBorderImage"
+            android:backgroundTint="@color/colorBorderImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:civ_border_width="9dp"
+            app:civ_border_color="@color/colorBorderImage"
+            android:src="@drawable/icon_location"/>
+        <TextView
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="Location"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+    </LinearLayout>
+
+</LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="69dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="29dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="29dp"
                         android:orientation="horizontal"
                         android:textAlignment="center">
 
                         <LinearLayout
-                            android:layout_width="151dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="49dp"
-                            android:background="@drawable/custom_buttom_detail_pet"
-                            android:orientation="vertical">
 
-
-                            <EditText
-                                android:id="@+id/detailAge"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
-                                android:hint="Age"
-                                android:textAlignment="center"
-                                android:textSize="13dp"
-                                android:textStyle="bold"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="151dp"
-                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/custom_button_filter_dog"
+                            android:layout_width="110dp"
+                            android:layout_height="40dp"
                             android:layout_marginRight="12dp"
-                            android:background="@drawable/custom_buttom_detail_pet"
-                            android:orientation="vertical">
+                            android:orientation="horizontal"
+                            android:id="@+id/dogFilterButton"
+                            android:clickable="true">
 
-
-                            <EditText
-                                android:id="@+id/detailBreed"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="13dp"
-                                android:hint="Breed"
-                                android:textAlignment="center"
-                                android:textSize="13dp"
-                                android:textStyle="bold"
+                            <ImageView
+                                android:background="@drawable/dog"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginRight="10dp"
                                 />
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:text="Dogs"
+                                android:textAlignment="center"
+                                android:textSize="16dp"
+                                android:textStyle="bold">
+                            </TextView>
                         </LinearLayout>
+                        <LinearLayout
+
+                            android:gravity="center"
+                            android:background="@drawable/custom_button_filter_cat"
+                            android:layout_width="110dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="12dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/catFilterButton">
+
+                            <ImageView
+                                android:background="@drawable/cat"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginRight="10dp"
+                                />
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:text="Cats"
+                                android:textAlignment="center"
+                                android:textSize="16dp"
+                                android:textStyle="bold">
+                            </TextView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:gravity="center"
+                            android:background="@drawable/custom_button_filter_others"
+                            android:layout_width="110dp"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:id="@+id/otherPetFilterButton">
+
+                            <ImageView
+                                android:background="@drawable/sloth"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginRight="10dp"
+                                />
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="wrap_content"
+                                android:text="Others"
+                                android:textAlignment="center"
+                                android:textSize="16dp"
+                                android:textStyle="bold">
+                            </TextView>
+                        </LinearLayout>
+
+
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="40dp"
                         android:layout_marginLeft="29dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="29dp"
-                        android:orientation="vertical">
-                        <Button
-                            android:id="@+id/btn_add_animal"
-                            android:layout_width="match_parent"
-                            android:layout_height="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/custom_button"
-                            android:padding="12dp"
-                            android:text="ADD ANIMAL"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="13dp" />
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="70dp"
                             android:layout_height="40dp"
-                            android:text="Pet story"
+                            android:text="Breed"
+                            android:textSize="22dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <EditText
+                            android:id="@+id/detailBreed"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+
+                        </EditText>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="29dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_height="40dp"
+                            android:text="Genre"
                             android:textSize="22dp"
                             android:textStyle="bold">
 
                         </TextView>
 
-                        <EditText
-                            android:id="@+id/petDescription"
-                            android:layout_width="match_parent"
+                        <CheckBox
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
-                            android:lineSpacingExtra="4dp"
-                            android:textSize="17dp">
+                            />
+                        <TextView
+                            android:layout_width="40dp"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:text="Male">
 
-                        </EditText>
+                        </TextView>
+                        <CheckBox
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            />
+                        <TextView
+                            android:layout_width="60dp"
+                            android:gravity="center"
+                            android:layout_height="match_parent"
+                            android:text="Female">
 
+                        </TextView>
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="29dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_height="40dp"
+                            android:text="Age"
+                            android:textSize="22dp"
+                            android:textStyle="bold"/>
+
+                        <SeekBar
+                            android:id="@+id/detailAge"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"/>
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            android:text="12"
+                            android:gravity="center"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="29dp"
+                        android:orientation="vertical">
+                        
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="Pet story / Description"
+                            android:textSize="22dp"/>
+                        <EditText
+                            android:id="@+id/petDescription"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            />
+                        
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_add_animal"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="18dp"
+                       android:gravity="center"
+                        android:layout_gravity="center"
+                        android:background="@drawable/custom_button"
+                        android:padding="12dp"
+                        android:text="ADD ANIMAL"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="13dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

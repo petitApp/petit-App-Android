@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentPetDetail">
+    tools:context=".FragmentPetDetail"
+    android:background="@color/colorWhiteBlue">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +17,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="360dp"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:background="@color/colorWhiteBlue">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -26,13 +29,9 @@
                     android:layout_width="280dp"
                     android:layout_height="280dp"
                     android:src="@drawable/dog_profile"
-                    app:civ_border_width="4dp"
-                    app:civ_border_color="@color/colorButton"
-                    android:layout_marginLeft="62dp"
-                    android:layout_marginRight="62dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="18dp"
-                    />
+                    app:civ_border_width="14dp"
+                    app:civ_border_color="@color/colorBorderImage"
+                    android:layout_gravity="center"/>
             </LinearLayout>
 
             <LinearLayout
@@ -41,13 +40,14 @@
             android:layout_height="match_parent">
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
-                    android:layout_height="434dp"
+                    android:layout_height="440dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -63,7 +63,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -78,7 +78,7 @@
                             <TextView
                                 android:id="@+id/location"
                                 android:layout_width="140dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="40dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="15dp"
                                 android:text="California, Walk Suite"
@@ -89,7 +89,7 @@
                             <TextView
                                 android:id="@+id/distance"
                                 android:layout_width="100dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="40dp"
                                 android:layout_marginLeft="7dp"
                                 android:layout_marginTop="15dp"
                                 android:text="2.5km"
@@ -98,6 +98,7 @@
                             </TextView>
 
                             <ImageView
+                                android:backgroundTint="@color/colorBorderImage"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:background="@drawable/like_grey">
@@ -210,27 +211,30 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="29dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="29dp"
+
                         android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:id="@+id/user_picture"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:src="@drawable/dog_profile"
-                            app:civ_border_color="@color/colorButton"
-                            app:civ_border_width="2dp">
+                            app:civ_border_color="@color/colorBorderImage"
+                            app:civ_border_width="4dp"
+                            android:layout_gravity="center_vertical">
 
                         </de.hdodenhof.circleimageview.CircleImageView>
 
 
                         <LinearLayout
                             android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:orientation="vertical">
+                            android:layout_height="60dp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -250,8 +254,9 @@
                         </LinearLayout>
 
                         <Button
+                            android:layout_gravity="center_vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="60dp"
                             android:background="@drawable/custom_button"
                             android:text="Contact me"
                             android:textColor="@color/colorWhite"

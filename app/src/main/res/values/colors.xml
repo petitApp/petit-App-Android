@@ -10,7 +10,7 @@
     <color name="colorButton">#3ECEC1</color>
     <color name="colorGrey">#7E7976</color>
     <color name="colorWhiteBlue">#E5FFFF   </color>
-    #DEB2AB
+    <color name="colorBorderImage">#a4dbd6</color>
     <color name="colorDog">#DEB2AB</color>
     <color name="colorCat">#F8E08E</color>
     <color name="colorOthers">#F2BE92</color>
