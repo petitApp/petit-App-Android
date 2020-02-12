@@ -62,7 +62,7 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
         String image = data.get(position).getPicture();
         if(image!= null) {
             ImageView elementImage = convertView.findViewById(R.id.imagePetCard);
-            Picasso.get().load(apiUtils.BASE_URL_PICTURE + image).resize(100, 100).into(elementImage);
+            Picasso.get().load(apiUtils.BASE_URL_PICTURE + image).fit().into(elementImage);
         }
 
 
