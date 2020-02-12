@@ -92,6 +92,7 @@
         </TextView>
     </LinearLayout>
 </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
@@ -117,39 +118,112 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+
+
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="65dp"
     android:layout_marginTop="190dp"
     android:gravity="center"
     android:orientation="vertical"
-    >
 
+    >
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:id="@+id/infoBreedFilter"
+            android:layout_width="136dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:visibility="visible"/>
+        <TextView
+            android:id="@+id/infoDistanceFilter"
+            android:layout_width="136dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:visibility="visible"/>
+        <TextView
+            android:id="@+id/infoAgeFilter"
+            android:layout_width="136dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:visibility="visible"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutBreedFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone">
     <EditText
         android:id="@+id/breedFilterET"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="50dp"
-        android:visibility="gone"
-        android:text="Pastor Alemán"
+        android:visibility="visible"
         android:textAlignment="center"
-        android:textSize="16dp"/>
-    <EditText
-        android:id="@+id/ageFilterET"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:visibility="gone"
-        android:text="2 años"
-        android:textAlignment="center"
-        android:textSize="16dp"/>
+        android:textSize="16dp"
+        android:hint="Write the breed here"/>
 
-    <SeekBar
-        android:id="@+id/seekBarFilter"
-        android:layout_width="300dp"
+        <Button
+            android:background="@drawable/custom_button"
+            android:visibility="visible"
+            android:id="@+id/buttonBreedFilter"
+            android:layout_width="40dp"
+            android:layout_height="35dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutAgeFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone">
+    <EditText
+android:inputType="number"
+        android:id="@+id/ageFilterET"
+        android:layout_width="250dp"
         android:layout_height="50dp"
-        android:max="100"
-        android:progress="0"
-        android:progressTint="@color/colorButton"
-        android:visibility="gone"/>
+        android:visibility="visible"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:hint="Write the age here"/>
+
+        <Button
+            android:background="@drawable/custom_button"
+            android:visibility="visible"
+            android:id="@+id/buttonAgeFilter"
+            android:layout_width="40dp"
+            android:layout_height="35dp"/>
+
+
+    </LinearLayout>
+
+
+
+            <SeekBar
+                android:id="@+id/seekBarFilter"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:max="100"
+                android:progress="0"
+                android:progressBackgroundTint="@color/colorButton"
+                android:progressTint="@color/colorButton"
+                android:visibility="gone"/>
+
+
 
 
 </LinearLayout>

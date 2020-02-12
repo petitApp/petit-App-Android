@@ -7,7 +7,6 @@ public class ApiUtils {
             "/trabajos/petit-api/public/";
 
     static APIService getAPIService() {
-
         return RetrofitClient.getClient(BASE_URL).create(APIService.class);
     }
 }

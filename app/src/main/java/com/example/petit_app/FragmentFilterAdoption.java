@@ -13,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -33,11 +36,13 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
     SeekBar seekBarFilter;
     EditText breedFilterET, ageFilterET;
     TabItem ageFilter,distanceFilter, raceFilter;
-    LinearLayout dogFilterButton, catFilterButton, otherPetFilterButton ;
+    LinearLayout layoutBreedFilter, layoutAgeFilter, dogFilterButton, catFilterButton, otherPetFilterButton ;
+    TextView infoBreedFilter, infoDistanceFilter, infoAgeFilter;
     Animal animal = new Animal();
-
-    private int check = 1;
-
+    Button buttonAgeFilter, buttonBreedFilter;
+int check = 1;
+    int progressBar = 0;
+    String showNumberSeekBar;
     private APIService APIService;
 
     @Nullable
@@ -51,19 +56,27 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
         distanceFilter = (TabItem) RootView.findViewById((R.id.distanceFilter));
         raceFilter = (TabItem) RootView.findViewById((R.id.raceFilter));
 
-
+        buttonAgeFilter = (Button)   RootView.findViewById((R.id.buttonAgeFilter));
+        buttonBreedFilter = (Button)   RootView.findViewById((R.id.buttonBreedFilter));
         otherPetFilterButton = (LinearLayout) RootView.findViewById((R.id.otherPetFilterButton));
         catFilterButton = (LinearLayout) RootView.findViewById((R.id.catFilterButton));
         dogFilterButton = (LinearLayout) RootView.findViewById((R.id.dogFilterButton));
+        layoutAgeFilter = (LinearLayout) RootView.findViewById((R.id.layoutAgeFilter));
+        layoutBreedFilter = (LinearLayout) RootView.findViewById((R.id.layoutBreedFilter));
 
         seekBarFilter = (SeekBar) RootView.findViewById((R.id.seekBarFilter));
         breedFilterET = (EditText) RootView.findViewById((R.id.breedFilterET));
         ageFilterET = (EditText) RootView.findViewById((R.id.ageFilterET));
 
+        infoBreedFilter = (TextView)  RootView.findViewById((R.id.infoBreedFilter));
+        infoDistanceFilter = (TextView)  RootView.findViewById((R.id.infoDistanceFilter));
+        infoAgeFilter = (TextView)  RootView.findViewById((R.id.infoAgeFilter));
+
 
         APIService = ApiUtils.getAPIService();
         adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, animal.animals, this);
         getAnimalInfo();
+
 
 
         seekBarFilter.setVisibility(View.GONE);
@@ -105,28 +118,38 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
 
     tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+        boolean visibility = true;
+
             @Override
             public void onTabSelected(TabLayout.Tab raceFilter) {
                 switch (tabs.getSelectedTabPosition()) {
                     case 0:
-                        breedFilterET.setVisibility(View.VISIBLE);
+                        layoutBreedFilter.setVisibility(View.VISIBLE);
                         seekBarFilter.setVisibility(View.GONE);
-                        ageFilterET.setVisibility(View.GONE);
+                        layoutAgeFilter.setVisibility(View.GONE);
+
+
+
+
+
                         break;
 
                     case 1:
                         seekBarFilter.setVisibility(View.VISIBLE);
-                        breedFilterET.setVisibility(View.GONE);
-                        ageFilterET.setVisibility(View.GONE);
+                        infoDistanceFilter.setVisibility(View.VISIBLE);
+                        layoutBreedFilter.setVisibility(View.GONE);
+                        layoutAgeFilter.setVisibility(View.GONE);
+
                         break;
+
                     case 2:
-                        ageFilterET.setVisibility(View.VISIBLE);
+
+                        layoutAgeFilter.setVisibility(View.VISIBLE);
                         seekBarFilter.setVisibility(View.GONE);
-                        breedFilterET.setVisibility(View.GONE);
+                        layoutBreedFilter.setVisibility(View.GONE);
                         break;
-
                 }
-
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -135,13 +158,103 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-               
+
+                switch (tabs.getSelectedTabPosition()) {
+                    case 0:
+
+                        seekBarFilter.setVisibility(View.GONE);
+                        layoutAgeFilter.setVisibility(View.GONE);
+
+                        if(layoutBreedFilter.getVisibility() == View.VISIBLE){
+                            layoutBreedFilter.setVisibility(View.GONE);
+
+                        }else{
+                            layoutBreedFilter.setVisibility(View.VISIBLE);
+                        }
+                        break;
+
+                    case 1:
+
+                        infoDistanceFilter.setVisibility(View.VISIBLE);
+                        layoutBreedFilter.setVisibility(View.GONE);
+                        layoutAgeFilter.setVisibility(View.GONE);
+
+                        if(seekBarFilter.getVisibility() == View.VISIBLE){
+                            seekBarFilter.setVisibility(View.GONE);
+
+                        }else{
+                            seekBarFilter.setVisibility(View.VISIBLE);
+                        }
+
+                        break;
+
+                    case 2:
+                        seekBarFilter.setVisibility(View.GONE);
+                        layoutBreedFilter.setVisibility(View.GONE);
+
+                        if(layoutAgeFilter.getVisibility() == View.VISIBLE){
+                            layoutAgeFilter.setVisibility(View.GONE);
+
+                        }else{
+                            layoutAgeFilter.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                }
+
             }
         });
 
+        buttonAgeFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String infoAgeTextFilter = ageFilterET.getText().toString();
+                if(!infoAgeTextFilter.isEmpty()){
+                    infoAgeFilter.setText(infoAgeTextFilter);
+                    layoutAgeFilter.setVisibility(View.GONE);
+                }else{
+                    layoutAgeFilter.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "You haven't written any age", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        buttonBreedFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String infoBreedTextFilter = breedFilterET.getText().toString();
+                if(!infoBreedTextFilter.isEmpty()){
+                    infoBreedFilter.setText(infoBreedTextFilter);
+                    layoutBreedFilter.setVisibility(View.GONE);
+                }else{
+                    layoutBreedFilter.setVisibility(View.GONE);
+                    Toast.makeText(getActivity(), "You haven't written any breed", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        seekBarFilter.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                progressBar = progress;
+                showNumberSeekBar = String.valueOf(progressBar);
+                infoDistanceFilter.setText(showNumberSeekBar);
+                Log.d("progress bar", String.valueOf(progressBar));
+
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }});
 
         return RootView;
     }
+
+
 
 
     private int selectedButtonFilter(int check, LinearLayout linearLayout){
@@ -169,7 +282,7 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
                 adapterImagesPets.notifyDataSetInvalidated();
                 adapterImagesPets.setData(animal);
                 gridView.setAdapter(adapterImagesPets);
-                Log.d("RESPONSE_OK", animal.animals.toString());
+//                Log.d("RESPONSE_OK", animal.animals.toString());
 
             }
 
@@ -188,5 +301,7 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
         ((MainActivity)getActivity()).addFragment(fragmentPetDetail);
 
     }
+
+
 
 }
