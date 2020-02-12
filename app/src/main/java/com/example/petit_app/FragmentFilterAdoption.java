@@ -40,10 +40,11 @@ public class FragmentFilterAdoption extends Fragment implements AdapterImagesPet
     TextView infoBreedFilter, infoDistanceFilter, infoAgeFilter;
     Animal animal = new Animal();
     Button buttonAgeFilter, buttonBreedFilter;
-int check = 1;
     int progressBar = 0;
     String showNumberSeekBar;
     private APIService APIService;
+
+
 
     @Nullable
     @Override
@@ -74,9 +75,10 @@ int check = 1;
 
 
         APIService = ApiUtils.getAPIService();
+
+
         adapterImagesPets = new AdapterImagesPets(getActivity().getApplicationContext(), R.layout.item_card_pet, animal.animals, this);
         getAnimalInfo();
-
 
 
         seekBarFilter.setVisibility(View.GONE);
@@ -257,24 +259,10 @@ int check = 1;
 
 
 
-    private int selectedButtonFilter(int check, LinearLayout linearLayout){
-
-
-        if(check ==1){
-            linearLayout.setBackgroundResource(R.drawable.custom_buttom_selected_dog);
-            check = 0;
-        }else{
-            linearLayout.setBackgroundResource(R.drawable.custom_buttom_loading);
-            check = 1;
-        }
-
-        return check;
-     //   Log.d(TAG, String.valueOf(check));
-
-    }
     private void getAnimalInfo()
     {
         Call<Animal> call = APIService.getInfo();
+
         call.enqueue(new Callback<Animal>(){
             @Override
             public void onResponse(Call<Animal> call, Response<Animal> response) {
@@ -293,6 +281,8 @@ int check = 1;
             }
         });
     }
+
+
 
 
     @Override

@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +24,7 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
     int item_Layaut;
     List<Animal> data;
     ClickOnPet listener;
-
+    ApiUtils apiUtils;
     public AdapterImagesPets(@NonNull Context context, int item_Layaut, List<Animal> data, ClickOnPet listener) {
         super(context, item_Layaut, Collections.singletonList(data));
         this.context = context;
@@ -36,8 +39,11 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
     }
 
     public void setData(Animal data) {
-        this.data = data.animals;
-        this.notifyDataSetChanged();
+        if(data!=null){
+            this.data = data.animals;
+            this.notifyDataSetChanged();
+        }
+
     }
 
     @NonNull
@@ -55,9 +61,8 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
 
         String image = data.get(position).getPicture();
         if(image!= null) {
-            Uri imageGallery = Uri.parse(image);
             ImageView elementImage = convertView.findViewById(R.id.imagePetCard);
-            elementImage.setImageURI(imageGallery);
+            Picasso.get().load(apiUtils.BASE_URL_PICTURE + image).resize(100, 100).into(elementImage);
         }
 
 
@@ -66,9 +71,9 @@ public class AdapterImagesPets  extends ArrayAdapter<List<Animal>> {
         TextView elementName = convertView.findViewById(R.id.namePetCard);
         elementName.setText(name);
 
-        String location = data.get(position).getLocation();
-        TextView elementLocation = convertView.findViewById(R.id.locationPetCard);
-        elementLocation.setText(location);
+        String age = data.get(position).getAge();
+        TextView elementAge = convertView.findViewById(R.id.agePetCard);
+        elementAge.setText(age);
 
         convertView.findViewById(R.id.adapter_container).setOnClickListener(new View.OnClickListener() {
             @Override
